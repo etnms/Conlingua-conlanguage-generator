@@ -1,38 +1,83 @@
+* {
+  padding: 0;
+  margin: 0%;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.btn {
+  background-color: rgb(93, 93, 207);
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 0.3rem;
+  padding:  0.5rem 1rem;
+  font-size: 1.2rem;
+  margin: 0.5rem;
+}
+
+.btn:hover{
+  border: 2px solid black;
+  opacity: 0.9;
+  transition: 200ms;
+}
+
+input {
+
+}
+
+.wrapper-ipa {
+  background-color: #F5F5F5;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+}
+
+.btn-letter {
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin: 0.2rem;
+  background-color: #CCCCCC;
+  color: black;
+  border: none;
+  border-radius: 0.2rem;
+}
+
+.btn-letter:hover {
+  background-color: rgb(224, 224, 224);
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.input-letters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+}
+
+.list-display {
+  margin: 2rem;
+  height: 60vh;
+  width: 80vw;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
 }
 
-.App-link {
-  color: #61dafb;
+.list-words, .list-english {
+  height: 100%;
+}
+.list-words {
+  list-style: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
