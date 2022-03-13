@@ -1,0 +1,250 @@
+@import "_variables.scss";
+
+* {
+    padding: 0;
+    margin: 0%;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .App {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    min-height: 100vh;
+  }
+  
+  .btn {
+    background-color: $primary-color;
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+  }
+  
+  .btn:hover {
+    border: 2px solid black;
+    opacity: 0.9;
+    transition: 200ms;
+  }
+  
+  .btn-secondary {
+    border: none;
+    background-color: $secondary-color;
+  }
+  .btn-secondary:hover {
+    border: none;
+  }
+  
+  .lexicon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  fieldset {
+    border: none;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label-letters {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.5rem;
+    text-align: center;
+  }
+  
+  #consonants-input,
+  #vowels-input {
+    padding: 0.2rem;
+    font-size: 1.4rem;
+    border-radius: 0.3rem;
+    min-width: 45vw;
+    border: 2px solid $secondary-color;
+  }
+  
+  #consonants-input:focus,
+  #vowels-input:focus {
+    transform: scale(1.05);
+    transition: 200ms;
+  }
+  
+  .wrapper-ipa {
+    background-color: $white;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+  }
+  
+  .btn-letter {
+    font-size: 1.2rem;
+    padding: 0.3rem;
+    margin: 0.2rem;
+    background-color: $light-gray;
+    color: black;
+    border: none;
+    border-radius: 0.2rem;
+  }
+  
+  .btn-letter:hover {
+    background-color: rgb(224, 224, 224);
+  }
+  
+  .input-letters {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .list-display {
+    margin: 2rem;
+    height: 60vh;
+    width: 80vw;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .list-words,
+  .list-english {
+    height: 100%;
+  }
+  .list-words {
+    list-style: none;
+  }
+  
+  .parameters-phonology {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  /* Toggle switch */
+  
+  .wrapper-param {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .wrapper-param>span {
+    font-size: 1.2rem;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 65px;
+    height: 25px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $light-gray;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 1.5px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  input:checked + .slider {
+    background-color: $primary-color;
+  }
+  
+  input:checked + .slider:before {
+  
+    transform: translateX(34px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  /* Range input sliders */
+  
+  .wrapper-range {
+    display: flex;
+    justify-content: center;
+    min-width: 80vw;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .wrapper-range > span {
+    width: 1rem;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .wrapper-range > label {
+    font-size: 1.2rem;
+    width: 30vw;
+  }
+  
+  .range-slider {
+    appearance: none;
+    margin: 0 0.5rem;
+    width: 25%;
+    max-width: 25%;
+    height: 1rem;
+    border-radius: 1rem;
+    background: #ccc;
+    opacity: 1;
+  }
+  
+  .range-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: $primary-color;
+    cursor: pointer;
+  }
+  
+  .range-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: $primary-color;
+    cursor: pointer;
+  }
+  

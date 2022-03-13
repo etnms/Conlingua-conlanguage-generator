@@ -1,68 +1,83 @@
 import { useState } from "react";
-import vowels from "../data/vowels.json";
-import consonants from "../data/consonants.json";
+import vowels from "../Data/vowels.json";
+import consonants from "../Data/consonants.json";
 
 const LetterPicker = (props) => {
   const { setConsonants, setVowels } = props;
   const [showIPAVowels, setShowIPAVowels] = useState(false);
   const [showIPAConsonants, setShowIPAConsonants] = useState(false);
 
-  const soundList = (input) => {
-    let cons = document.querySelector("#consonants-input").value;
-    let vows = document.querySelector("#vowels-input").value;
+  const handleChange = (e, type) => {
     let regex = /^[0-9!@#$%"'<>,[\]^&*)(+=._-]+$/g;
-    for (let i = 0; i < vows.length; i++) {
-      if (!vows[i].match(regex)) if (input === "vowels") setVowels(vows);
-    }
-    for (let i = 0; i < cons.length; i++)
-      if (!cons[i].match(regex)) {
-        if (input === "consonants") setConsonants(cons);
+    if (type === "consonant") {
+      let listCons = "";
+      for (let i = 0; i < e.target.value.length; i++) {
+        if (!e.target.value[i].match(regex)) listCons += e.target.value[i];
       }
+      setConsonants(listCons);
+    }
+    if (type === "vowel") {
+      let listVows = "";
+      for (let i = 0; i < e.target.value.length; i++) {
+        if (!e.target.value[i].match(regex)) listVows += e.target.value[i];
+      }
+      setVowels(listVows);
+    }
   };
 
   const writeLetter = (e, letter) => {
     if (letter === "vowel") {
+      setVowels((vowels) => [...vowels, e.target.value]);
       document.querySelector("#vowels-input").value += e.target.value;
     }
-    if (letter === "consonant")
+    if (letter === "consonant") {
+      setConsonants((consonant) => [...consonant, e.target.value]);
       document.querySelector("#consonants-input").value += e.target.value;
+    }
   };
 
   const createBtns = (input) => {
     if (input === "vowel")
-    return vowels.map((x) => {
-      return (
-        <button
-          key={x}
-          value={x}
-          className="btn-letter"
-          onClick={(e) => writeLetter(e, "vowel")}>
-          {x}
-        </button>
-      );
-    });
+      return vowels.map((x) => {
+        return (
+          <button
+            key={x}
+            value={x}
+            className="btn-letter"
+            onClick={(e) => writeLetter(e, "vowel")}>
+            {x}
+          </button>
+        );
+      });
     else
-    return consonants.map((x) => {
-      return (
-        <button
-          key={x}
-          value={x}
-          className="btn-letter"
-          onClick={(e) => writeLetter(e, "consonant")}>
-          {x}
-        </button>
-      );
-    });
+      return consonants.map((x) => {
+        return (
+          <button
+            key={x}
+            value={x}
+            className="btn-letter"
+            onClick={(e) => writeLetter(e, "consonant")}>
+            {x}
+          </button>
+        );
+      });
   };
 
   return (
     <div className="input-letters">
-      Consonants
-      <input type="text" name="consonants-input" id="consonants-input"></input>
-      <button onClick={() => soundList("consonants")} className="btn">
-        Generate consonants
-      </button>
-      <button className="btn" onClick={() => setShowIPAConsonants(!showIPAConsonants)}>
+      <fieldset>
+        <label htmlFor="vowels-input" className="label-letters">
+          Consonants
+        </label>
+        <input
+          type="text"
+          name="consonants-input"
+          id="consonants-input"
+          onChange={(e) => handleChange(e, "consonant")}></input>
+      </fieldset>
+      <button
+        className="btn btn-secondary"
+        onClick={() => setShowIPAConsonants(!showIPAConsonants)}>
         Show IPA for consonants
       </button>
       {showIPAConsonants ? (
@@ -70,12 +85,19 @@ const LetterPicker = (props) => {
       ) : (
         <div></div>
       )}
-      Vowels
-      <input type="text" name="consonants-input" id="vowels-input"></input>
-      <button onClick={() => soundList("vowels")} className="btn">
-        Generate vowels
-      </button>
-      <button className="btn" onClick={() => setShowIPAVowels(!showIPAVowels)}>
+      <fieldset>
+        <label htmlFor="vowels-input" className="label-letters">
+          Vowels
+        </label>
+        <input
+          type="text"
+          name="vowels-input"
+          id="vowels-input"
+          onChange={(e) => handleChange(e, "vowel")}></input>
+      </fieldset>
+      <button
+        className="btn btn-secondary"
+        onClick={() => setShowIPAVowels(!showIPAVowels)}>
         Show IPA for vowels
       </button>
       {showIPAVowels ? (

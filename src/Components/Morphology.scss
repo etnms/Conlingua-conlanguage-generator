@@ -1,0 +1,16 @@
+.parameters-morphology {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.wrapper-morpho{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+}
+.wrapper-morpho>label {
+    font-size: 1.2rem;
+}
