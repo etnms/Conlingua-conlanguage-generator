@@ -1,16 +1,19 @@
 .parameters-morphology {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin: 1rem;
     gap: 1rem;
 }
-.wrapper-morpho{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
 
+.wrapper-morpho{
+    min-width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 .wrapper-morpho>label {
+    text-align: right;
     font-size: 1.2rem;
+    width: 20vw;
 }

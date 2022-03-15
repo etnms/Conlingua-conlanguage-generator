@@ -1,6 +1,7 @@
 import "./Morphology.scss";
-
-const ParametersGrammar = () => {
+import "./Select.scss"
+const ParamsGrammar = (props) => {
+  const { wordOrder, setWordOrder } = props;
 
   const handleChange = (e) => {
     console.log(e.target.value);
@@ -10,7 +11,7 @@ const ParametersGrammar = () => {
     <div className="parameters-morphology">
       <div className="wrapper-morpho">
         <label htmlFor="type-morphology">Morphology:</label>
-        <select id="type-morphology">
+        <select id="type-morphology" className="select-dropdown">
           <option value={"fusional"}>Fusional</option>
           <option value={"agglutinative"}>Agglutinative</option>
           <option value={"isolating"}>Isolating</option>
@@ -18,8 +19,8 @@ const ParametersGrammar = () => {
         </select>
       </div>
       <div className="wrapper-morpho">
-        <label htmlFor="verbal-structure">Verbal structure:</label>
-        <select id="verbal-structure" onChange={(e) => handleChange(e)}>
+        <label htmlFor="word-order">Word order:</label>
+        <select id="word-order" className="select-dropdown" onChange={(e) => setWordOrder(e.target.value)}>
           <option value={"SOV"}>SOV</option>
           <option value={"SVO"}>SVO</option>
           <option value={"VSO"}>VSO</option>
@@ -31,7 +32,7 @@ const ParametersGrammar = () => {
 
       <div className="wrapper-morpho">
         <label htmlFor="alignment">Morphosyntactic alignment:</label>
-        <select id="alignment" onChange={(e) => handleChange(e)}>
+        <select id="alignment"  className="select-dropdown" onChange={(e) => handleChange(e)}>
           <option value={"nom-acc"}>Nominative-accusative</option>
           <option value={"erg-abs"}>Ergative-absolutive</option>
           <option value={"tripartite"}>Tripartite</option>
@@ -46,4 +47,4 @@ const ParametersGrammar = () => {
   );
 };
 
-export default ParametersGrammar;
+export default ParamsGrammar;

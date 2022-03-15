@@ -1,0 +1,46 @@
+.wrapper-lexicon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.lexicon-view {
+  background-color: white;
+  margin: 1.5rem;
+  height: 100%;
+  width: 90vw;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid black;
+  border-radius: 0.3rem;
+}
+
+.title-lexicon {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+}
+
+.lexicon-view::-webkit-scrollbar {
+  border-radius: 1rem;
+  width: 1rem;
+  background: white;
+}
+
+::-webkit-scrollbar-track {
+  margin: 0.2rem;
+}
+
+::-webkit-scrollbar-thumb {
+    padding: 2rem;
+  border-radius: 1rem;
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

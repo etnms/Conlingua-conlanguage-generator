@@ -1,17 +1,23 @@
 import { useState } from "react";
 import "./App.scss";
-import LetterPicker from "./Components/LettersPicker";
-import ParametersGrammar from "./Components/ParametersGrammar";
-import Params from "./Components/Params";
+import "./Components/Scrollbar.scss";
+import LetterPicker from "./Components/Parameters/LettersPicker";
+import ParamsGrammar from "./Components/Parameters/ParamsGrammar";
+import Params from "./Components/Parameters/Params";
 import data from "./Data/englishList.json";
 import createWord from "./Helpers/CreateWords";
+import PersonalPronouns from "./Components/PersonalPronouns";
+import WordOrder from "./Components/WordOrder";
+import Sounds from "./Components/Views/Sounds";
+import Lexicon from "./Components/Views/Lexicon";
 
 const App = () => {
   const [nav, setNav] = useState(0);
 
   const [words, setWords] = useState([]);
-  const [consonants, setConsonants] = useState([]);
-  const [vowels, setVowels] = useState([]);
+  const [languageName, setLanguageName] = useState("");
+  const [consonants, setConsonants] = useState(""); // Strings for lists of sounds (can be sanitized)
+  const [vowels, setVowels] = useState("");
   const [generation, setGeneration] = useState(false);
 
   const [minLetters, setMinLetters] = useState(2);
@@ -23,6 +29,9 @@ const App = () => {
 
   const [pronouns, setPronouns] = useState([]);
   const [pluralPronoun, setPluralPronoun] = useState("");
+
+  const [wordOrder, setWordOrder] = useState("SOV"); // Default to SOV bc most common one
+
   //Randomize the chance of having a consonant cluster
   const lengthCluster = () => {
     let rdm = Math.random();
@@ -52,6 +61,19 @@ const App = () => {
         ),
       ]);
     }
+    setLanguageName(
+      createWord(
+        maxLetters,
+        minLetters,
+        setMaxLetters,
+        lengthCluster,
+        vowels,
+        consonantCluster,
+        consonants,
+        gemination,
+        consOnly
+      )
+    );
     setGeneration(true);
     generatePronouns();
   };
@@ -114,20 +136,14 @@ const App = () => {
     return data.map((x) => <li key={x}>{x}</li>);
   };
 
-  const listPronouns = () => {
-    return pronouns.map((x) => (
-      <li key={Math.floor(Math.random() * 10000000)}>{x}</li>
-    ));
-  };
-
-  const renderLexicon = () => {
+  const renderParameters = () => {
     if (nav === 0)
       return (
-        <div className="lexicon">
+        <div className="">
           <LetterPicker
+            consonantList={consonants}
             setConsonants={setConsonants}
-            consonants={consonants}
-            vowels={vowels}
+            vowelList={vowels}
             setVowels={setVowels}></LetterPicker>
           <Params
             minLetters={minLetters}
@@ -136,18 +152,24 @@ const App = () => {
             setMaxLetters={setMaxLetters}
             consonantCluster={consonantCluster}
             setConsonantCluster={setConsonantCluster}
+            gemination={gemination}
             setGemination={setGemination}
+            consOnly={consOnly}
             setConsOnly={setConsOnly}></Params>
-          <ParametersGrammar></ParametersGrammar>
-          <button onClick={() => generateLanguage()} className="btn">
+          <ParamsGrammar
+            wordOrder={wordOrder}
+            setWordOrder={setWordOrder}></ParamsGrammar>
+          <button
+            onClick={() => generateLanguage()}
+            className="btn btn-generate btn-fill">
             Generate language
           </button>
-          <ul>{generation ? listPronouns() : <div></div>}</ul>
+          {generation ? <h2>Language name: {languageName}</h2> : <span></span>}
           <div className="list-display">
-            <ol className="list-english">
+            <ol className="list-numbered">
               {generation ? listEnglishWords() : <div></div>}
             </ol>
-            <ul className="list-words">{generation ? listWords() : null}</ul>
+            <ul className="list-default">{generation ? listWords() : null}</ul>
           </div>
         </div>
       );
@@ -155,7 +177,36 @@ const App = () => {
   };
 
   const renderGrammar = () => {
-    if (nav === 1) return <div>Hello</div>;
+    if (nav === 1)
+      return (
+        <div>
+          <PersonalPronouns
+            pronouns={pronouns}
+            generation={generation}></PersonalPronouns>
+          <h2>Examples</h2>
+          <WordOrder
+            words={words}
+            pronouns={pronouns}
+            wordOrder={wordOrder}
+            generation={generation}></WordOrder>
+        </div>
+      );
+  };
+
+  const renderSounds = () => {
+    if (nav === 2)
+      return (
+        <Sounds
+          consonants={consonants}
+          vowels={vowels}
+          generation={generation}
+          languageName={languageName}></Sounds>
+      );
+  };
+
+  const renderLexicon = () => {
+    if (nav === 3)
+      return <Lexicon words={words} generation={generation}></Lexicon>;
   };
 
   return (
@@ -174,8 +225,10 @@ const App = () => {
           Lexicon
         </button>
       </nav>
-      {renderLexicon()}
+      {renderParameters()}
       {renderGrammar()}
+      {renderSounds()}
+      {renderLexicon()}
     </div>
   );
 };

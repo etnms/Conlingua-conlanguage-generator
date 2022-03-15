@@ -1,11 +1,21 @@
-import { useState } from "react";
-import vowels from "../Data/vowels.json";
-import consonants from "../Data/consonants.json";
+import { useEffect, useState } from "react";
+import vowels from "../../Data/vowels.json";
+import consonants from "../../Data/consonants.json";
 
 const LetterPicker = (props) => {
-  const { setConsonants, setVowels } = props;
+  const { consonantList, setConsonants, vowelList, setVowels } = props;
   const [showIPAVowels, setShowIPAVowels] = useState(false);
   const [showIPAConsonants, setShowIPAConsonants] = useState(false);
+
+  // useEffect is used to get the values back in the field after navigation to other tabs
+  useEffect(() => {
+    for (let i = 0; i < vowelList.length; i++) {
+      document.querySelector("#vowels-input").value += vowelList[i];
+    }
+    for (let i = 0; i < consonantList.length; i++) {
+      document.querySelector("#consonants-input").value += consonantList[i];
+    }
+  }, []);
 
   const handleChange = (e, type) => {
     let regex = /^[0-9!@#$%"'<>,[\]^&*)(+=._-]+$/g;

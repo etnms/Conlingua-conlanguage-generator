@@ -1,14 +1,28 @@
+import { useEffect } from "react";
+import "./Params.scss";
+import "./CheckboxSlider.scss";
+import "./RangeSlider.scss";
 const Params = (props) => {
   const {
     consonantCluster,
     setConsonantCluster,
+    consOnly,
     setConsOnly,
+    gemination,
     setGemination,
     minLetters,
     setMinLetters,
     maxLetters,
     setMaxLetters,
   } = props;
+
+  useEffect(() => {
+    document.querySelector("#range-min-letters").value = minLetters;
+    document.querySelector("#range-max-letters").value = maxLetters;
+    document.querySelector("#range-cc").value = consonantCluster;
+    document.querySelector("#gemination-checkbox").checked = gemination;
+    document.querySelector("#consonly-checkbox").checked = consOnly;
+  }, []);
 
   return (
     <div className="parameters-phonology">
@@ -20,6 +34,7 @@ const Params = (props) => {
           max="5"
           defaultValue="2"
           className="range-slider"
+          id="range-min-letters"
           onChange={(e) => setMinLetters(parseInt(e.target.value))}></input>
         <span>{minLetters}</span>
       </div>
@@ -31,6 +46,7 @@ const Params = (props) => {
           max="15"
           defaultValue="10"
           className="range-slider"
+          id="range-max-letters"
           onChange={(e) => setMaxLetters(parseInt(e.target.value))}></input>
         <span>{maxLetters}</span>
       </div>
@@ -42,6 +58,7 @@ const Params = (props) => {
           max="5"
           defaultValue="1"
           className="range-slider"
+          id="range-cc"
           onChange={(e) =>
             setConsonantCluster(parseInt(e.target.value))
           }></input>
