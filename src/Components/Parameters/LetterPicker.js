@@ -17,33 +17,24 @@ const LetterPicker = (props) => {
     }
   }, []);
 
-  const handleChange = (e, type) => {
+  const handleChange = (e, setListSound) => {
     let regex = /^[0-9!@#$%"'<>,[\]^&*)(+=._-]+$/g;
-    if (type === "consonant") {
-      let listCons = "";
-      for (let i = 0; i < e.target.value.length; i++) {
-        if (!e.target.value[i].match(regex)) listCons += e.target.value[i];
-      }
-      setConsonants(listCons);
+    let tmpList = [];
+
+    for (let i = 0; i < e.target.value.length; i++) {
+       // Avoid having same value twice
+      if (!tmpList.includes(e.target.value[i]))
+        if (!e.target.value[i].match(regex))
+          tmpList.push(e.target.value[i]);
     }
-    if (type === "vowel") {
-      let listVows = "";
-      for (let i = 0; i < e.target.value.length; i++) {
-        if (!e.target.value[i].match(regex)) listVows += e.target.value[i];
-      }
-      setVowels(listVows);
-    }
+    setListSound(tmpList);
   };
 
-  const writeLetter = (e, letter) => {
-    if (letter === "vowel") {
-      setVowels((vowels) => [...vowels, e.target.value]);
-      document.querySelector("#vowels-input").value += e.target.value;
-    }
-    if (letter === "consonant") {
-      setConsonants((consonant) => [...consonant, e.target.value]);
-      document.querySelector("#consonants-input").value += e.target.value;
-    }
+  const writeLetter = (e, setListSound, list, stringInput) => {
+     // Avoid having same value twice
+    if (!list.includes(e.target.value)) 
+      setListSound((vowels) => [...vowels, e.target.value]);
+    document.querySelector(`#${stringInput}`).value += e.target.value;
   };
 
   const createBtns = (input) => {
@@ -54,7 +45,9 @@ const LetterPicker = (props) => {
             key={x}
             value={x}
             className="btn-letter"
-            onClick={(e) => writeLetter(e, "vowel")}>
+            onClick={(e) =>
+              writeLetter(e, setVowels, vowelList, "vowels-input")
+            }>
             {x}
           </button>
         );
@@ -66,7 +59,9 @@ const LetterPicker = (props) => {
             key={x}
             value={x}
             className="btn-letter"
-            onClick={(e) => writeLetter(e, "consonant")}>
+            onClick={(e) =>
+              writeLetter(e, setConsonants, consonantList, "consonants-input")
+            }>
             {x}
           </button>
         );
@@ -83,7 +78,7 @@ const LetterPicker = (props) => {
           type="text"
           name="consonants-input"
           id="consonants-input"
-          onChange={(e) => handleChange(e, "consonant")}></input>
+          onChange={(e) => handleChange(e, setConsonants)}></input>
       </fieldset>
       <button
         className="btn btn-secondary"
@@ -92,9 +87,7 @@ const LetterPicker = (props) => {
       </button>
       {showIPAConsonants ? (
         <div className="wrapper-ipa">{createBtns("consonant")}</div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
       <fieldset>
         <label htmlFor="vowels-input" className="label-letters">
           Vowels
@@ -103,7 +96,7 @@ const LetterPicker = (props) => {
           type="text"
           name="vowels-input"
           id="vowels-input"
-          onChange={(e) => handleChange(e, "vowel")}></input>
+          onChange={(e) => handleChange(e, setVowels)}></input>
       </fieldset>
       <button
         className="btn btn-secondary"
@@ -112,9 +105,7 @@ const LetterPicker = (props) => {
       </button>
       {showIPAVowels ? (
         <div className="wrapper-ipa">{createBtns("vowel")}</div>
-      ) : (
-        <div></div>
-      )}
+      ) : null}
     </div>
   );
 };

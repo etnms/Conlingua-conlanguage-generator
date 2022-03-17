@@ -1,15 +1,32 @@
+import ConsonantChart from "../ConsonantChart";
 import "./Sounds.scss";
-
+import consonantList from "../../Data/consonants.json";
+import VowelChart from "../VowelChart";
 const Sounds = (props) => {
   const { consonants, vowels, generation, languageName } = props;
 
-  const phonoList = (list) => {
+  const sortingSounds = (list, comp) => { 
+    list.sort((a, b) => comp.indexOf(a) - comp.indexOf(b));
+    return list;
+   };
+
+  const phonoList = (list, listComp) => {
     let tmpList = "";
-    for (let i = 0; i < list.length; i++) {
-      tmpList += `/${list[i]}/ `;
+    for (let i = 0; i < sortingSounds(list, listComp).length; i++) {
+      tmpList += `/${sortingSounds(list, listComp)[i]}/ `;
     }
     return tmpList;
   };
+
+  const soundsDistribution = (sound, cell1, cell2) => {
+    let text = "";
+    for (let i = 0; i < sound.length; i++) {
+      if (sound[i] === cell1) text += `/${sound[i]}/ `;
+      if (sound[i] === cell2) text += `/${sound[i]}/`;
+    }
+    return text;
+  };
+
 
   const renderSounds = () => {
     return generation ? (
@@ -17,16 +34,18 @@ const Sounds = (props) => {
         <h1 className="title-l">Phonology of {languageName}</h1>
         <div className="container container-consonnant">
           <h1 className="title-phono">Consonants</h1>
-          <span>{phonoList(consonants)}</span>
+          <span>{phonoList(consonants, consonantList)}</span>
         </div>
         <div className="container container-vowel">
           <h1 className="title-phono">Vowels</h1>
-          <span>{phonoList(vowels)}</span>
+          <span>{phonoList(vowels, consonantList)}</span>
         </div>
         <span>Breakdown of type of consonants</span>
+        <ConsonantChart consonants={consonants} sortingSounds={sortingSounds} soundsDistribution={soundsDistribution}></ConsonantChart>
+        <VowelChart vowels={vowels} sortingSounds={sortingSounds} soundsDistribution={soundsDistribution}></VowelChart>
       </div>
     ) : (
-      <div className="centered">
+      <div className="center">
         <h1 className="title-m">
           Generate a language first and then come back to see the different
           sounds of your language!
@@ -34,6 +53,7 @@ const Sounds = (props) => {
       </div>
     );
   };
+
   return renderSounds();
 };
 

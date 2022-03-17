@@ -1,23 +1,22 @@
 import { useState } from "react";
 import "./App.scss";
 import "./Components/Scrollbar.scss";
-import LetterPicker from "./Components/Parameters/LettersPicker";
+import LetterPicker from "./Components/Parameters/LetterPicker";
 import ParamsGrammar from "./Components/Parameters/ParamsGrammar";
 import Params from "./Components/Parameters/Params";
 import data from "./Data/englishList.json";
 import createWord from "./Helpers/CreateWords";
-import PersonalPronouns from "./Components/PersonalPronouns";
-import WordOrder from "./Components/WordOrder";
 import Sounds from "./Components/Views/Sounds";
 import Lexicon from "./Components/Views/Lexicon";
+import Grammar from "./Components/Views/Grammar";
 
 const App = () => {
   const [nav, setNav] = useState(0);
 
   const [words, setWords] = useState([]);
   const [languageName, setLanguageName] = useState("");
-  const [consonants, setConsonants] = useState(""); // Strings for lists of sounds (can be sanitized)
-  const [vowels, setVowels] = useState("");
+  const [consonants, setConsonants] = useState([]); // Strings for lists of sounds (can be sanitized)
+  const [vowels, setVowels] = useState([]);
   const [generation, setGeneration] = useState(false);
 
   const [minLetters, setMinLetters] = useState(2);
@@ -27,10 +26,13 @@ const App = () => {
   const [gemination, setGemination] = useState(false);
   const [consOnly, setConsOnly] = useState(false);
 
+  const [alignment, setAlignment] = useState("");
+  const [morphologyType, setMorphologyType] = useState("fusional");
+  const [wordOrder, setWordOrder] = useState("SOV"); // Default to SOV because most common one
+
+  const [plural, setPlural] = useState("");
   const [pronouns, setPronouns] = useState([]);
   const [pluralPronoun, setPluralPronoun] = useState("");
-
-  const [wordOrder, setWordOrder] = useState("SOV"); // Default to SOV bc most common one
 
   //Randomize the chance of having a consonant cluster
   const lengthCluster = () => {
@@ -61,21 +63,46 @@ const App = () => {
         ),
       ]);
     }
-    setLanguageName(
-      createWord(
-        maxLetters,
-        minLetters,
-        setMaxLetters,
-        lengthCluster,
-        vowels,
-        consonantCluster,
-        consonants,
-        gemination,
-        consOnly
-      )
+    //Generate name for language and capitalize the first letter
+    let tmpName = createWord(
+      maxLetters,
+      minLetters,
+      setMaxLetters,
+      lengthCluster,
+      vowels,
+      consonantCluster,
+      consonants,
+      gemination,
+      consOnly
     );
-    setGeneration(true);
+    setLanguageName(capitalizeFirstLetter(tmpName));
+
+    //Generation of the grammar aspects
     generatePronouns();
+    generatePlural();
+    setGeneration(true);
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  const generatePlural = () => {
+    morphologyType === "isolating"
+      ? setPlural("")
+      : setPlural(
+          createWord(
+            Math.round(maxLetters / 2), //divide by 2 to get smaller morphemes
+            minLetters,
+            setMaxLetters,
+            lengthCluster,
+            vowels,
+            consonantCluster,
+            consonants,
+            gemination,
+            consOnly
+          )
+        );
   };
 
   const generatePronouns = () => {
@@ -119,6 +146,7 @@ const App = () => {
         )
       );
     }
+
     setPluralPronoun(tmpPluralPronoun);
     setPronouns(tmpPronouns);
     if (randomPlural > 0.35)
@@ -139,7 +167,7 @@ const App = () => {
   const renderParameters = () => {
     if (nav === 0)
       return (
-        <div className="">
+        <div className="center-no-height">
           <LetterPicker
             consonantList={consonants}
             setConsonants={setConsonants}
@@ -158,6 +186,8 @@ const App = () => {
             setConsOnly={setConsOnly}></Params>
           <ParamsGrammar
             wordOrder={wordOrder}
+            setAlignment={setAlignment}
+            setMorphologyType={setMorphologyType}
             setWordOrder={setWordOrder}></ParamsGrammar>
           <button
             onClick={() => generateLanguage()}
@@ -165,12 +195,12 @@ const App = () => {
             Generate language
           </button>
           {generation ? <h2>Language name: {languageName}</h2> : <span></span>}
-          <div className="list-display">
+          {generation? <div className="list-display">
             <ol className="list-numbered">
-              {generation ? listEnglishWords() : <div></div>}
+              {listEnglishWords()}
             </ol>
-            <ul className="list-default">{generation ? listWords() : null}</ul>
-          </div>
+            <ul className="list-default">{listWords()}</ul>
+          </div> : null}
         </div>
       );
     return null;
@@ -179,17 +209,13 @@ const App = () => {
   const renderGrammar = () => {
     if (nav === 1)
       return (
-        <div>
-          <PersonalPronouns
-            pronouns={pronouns}
-            generation={generation}></PersonalPronouns>
-          <h2>Examples</h2>
-          <WordOrder
-            words={words}
-            pronouns={pronouns}
-            wordOrder={wordOrder}
-            generation={generation}></WordOrder>
-        </div>
+        <Grammar
+          generation={generation}
+          morphologyType={morphologyType}
+          plural={plural}
+          pronouns={pronouns}
+          words={words}
+          wordOrder={wordOrder}></Grammar>
       );
   };
 
