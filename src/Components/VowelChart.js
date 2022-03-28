@@ -70,7 +70,7 @@ const VowelChart = (props) => {
       <span className="vowel-display open-back">
         {soundsDistribution(sortingSounds(vowels, vowelList), "\u0251", "ɒ")}
       </span>
-      <img src={img} alt="test"></img>
+      <img src={img} alt="ipa-vowel-chart"></img>
     </div>
   );
 };

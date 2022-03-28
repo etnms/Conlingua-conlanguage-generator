@@ -1,4 +1,4 @@
-@import "../_variables.scss";
+@use "../_variables.scss";
 
 .table-title {
   font-size: 1.6rem;
@@ -37,10 +37,10 @@
   width: 6vw;
   font-size: 0.7rem;
 }
+
 .tb td {
   border-right: solid 1.5px black;
   border-bottom: solid 1.5px black;
-
 }
 
 .cell {
@@ -53,7 +53,7 @@
 }
 
 .cell-filled {
-background-color: $light-gray;
+background-color: variables.$light-gray;
 }
 
 .cell-large {

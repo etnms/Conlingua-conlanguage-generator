@@ -1,14 +1,17 @@
-.wrapper-lexicon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
+@use "../../mixin";
+@use "../../variables";
+
+.lexicon {
+  @include mixin.flex-center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .lexicon-view {
-  background-color: white;
-  margin: 1.5rem;
+  background-color: variables.$second-white;
   height: 100%;
   width: 90vw;
   overflow-y: auto;
@@ -21,8 +24,37 @@
 }
 
 .title-lexicon {
-    font-size: 1.8rem;
-    margin-top: 1rem;
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+
+.wrapper-options-lexicon {
+  @include mixin.flex-center;
+}
+
+.search-bar {
+  @include mixin.input-text;
+  background-image: url("../../Img/search_icon.svg");
+  background-size: 30px;
+  background-position: 240px 1px;
+  background-repeat: no-repeat;
+}
+
+.search-bar::placeholder {
+  font-size: 1.25rem;
+  font-style: italic;
+}
+
+.span-current-list {
+  margin: 1rem;
+  font-size: 1.2rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.span-current-list > strong {
+  font-size: 1.2rem;
 }
 
 .lexicon-view::-webkit-scrollbar {
@@ -36,7 +68,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    padding: 2rem;
+  padding: 2rem;
   border-radius: 1rem;
   background: #888;
 }

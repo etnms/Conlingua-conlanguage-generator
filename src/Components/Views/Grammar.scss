@@ -1,0 +1,43 @@
+@use "../../mixin";
+@use "../../variables";
+
+section {
+  min-width: 60vw;
+}
+
+.grammar {
+  @include mixin.flex-center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-grammar {
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 1rem;
+  background-color: variables.$second-white;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+.section-subtitle {
+  margin: 1rem 0;
+  font-weight: unset;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.section-example {
+  text-align: left;
+  margin: 1rem;
+}
+
+.grammar-bold {
+  font-size: 1.2rem;
+}
+.wrapper-table {
+  @include mixin.flex-center;
+}

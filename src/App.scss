@@ -1,5 +1,5 @@
-@import "_variables.scss";
-
+@use "_variables";
+@use "_mixin";
 /* General settings */
 
 * {
@@ -7,7 +7,7 @@
   margin: 0%;
   font-size: 16px;
   box-sizing: border-box;
-  font-family: $font;
+  font-family: variables.$font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -21,7 +21,7 @@ html {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background-color: #f2f2f2;
+  background-color: variables.$white;
   min-height: 100vh;
 }
 
@@ -37,18 +37,14 @@ html {
 }
 
 .center {
-  display: flex;
+  @include mixin.flex-center;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 80vh;
 }
 
 .center-no-height{
-  display: flex;
+  @include mixin.flex-center;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .title-l {
@@ -58,8 +54,9 @@ html {
 .title-m {
   font-size: 1.4rem;
 }
+
 .btn {
-  background-color: $primary-color;
+  background-color: variables.$primary-color;
   color: white;
   border: 2px solid transparent;
   border-radius: 0.3rem;
@@ -82,7 +79,7 @@ html {
 .btn-fill::before {
   position: absolute;
   content: "";
-  background: darken($primary-color, 20%);
+  background: darken(variables.$primary-color, 20%);
   transition-duration: 0.5s;
   z-index: -1;
   inset: 0;
@@ -102,10 +99,19 @@ html {
 
 .btn-secondary {
   border: none;
-  background-color: $secondary-color;
+  background-color: variables.$secondary-color;
 }
 .btn-secondary:hover {
   border: none;
+}
+
+.btn-tertiary {
+  background-color: variables.$tertiary-color;
+  color: black;
+  font-size: 1.1rem;
+}
+.btn-tertiary:hover {
+  background-color: darken(variables.$tertiary-color, 9%);
 }
 
 fieldset {
@@ -124,11 +130,9 @@ fieldset {
 
 #consonants-input,
 #vowels-input {
-  padding: 0.2rem;
-  font-size: 1.4rem;
-  border-radius: 0.3rem;
+  @include mixin.input-text;
   min-width: 45vw;
-  border: 2px solid $secondary-color;
+  outline: none;
 }
 
 #consonants-input:focus,
@@ -138,7 +142,7 @@ fieldset {
 }
 
 .wrapper-ipa {
-  background-color: $white;
+  background-color: variables.$white;
   border-radius: 0.3rem;
   padding: 0.3rem;
 }
@@ -147,7 +151,7 @@ fieldset {
   font-size: 1.2rem;
   padding: 0.3rem;
   margin: 0.2rem;
-  background-color: $light-gray;
+  background-color: variables.$light-gray;
   color: black;
   border: none;
   border-radius: 0.2rem;
@@ -158,29 +162,24 @@ fieldset {
 }
 
 .input-letters {
-  display: flex;
+  @include mixin.flex-center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.list-display {
+.list-display {@include 
+  mixin.flex-center;
   margin: 2rem;
   height: 60vh;
   width: 80vw;
   overflow-y: auto;
-  display: flex;
+
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Toggle switch */
 
 .wrapper-param {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include mixin.flex-center;
   gap: 1rem;
 }
 .wrapper-param > span {

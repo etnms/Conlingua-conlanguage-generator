@@ -22,7 +22,7 @@ const Params = (props) => {
     document.querySelector("#range-cc").value = consonantCluster;
     document.querySelector("#gemination-checkbox").checked = gemination;
     document.querySelector("#consonly-checkbox").checked = consOnly;
-  }, []);
+  });
 
   return (
     <div className="parameters-phonology">

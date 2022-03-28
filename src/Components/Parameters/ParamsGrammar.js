@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import "./Morphology.scss";
 import "./Select.scss"
 const ParamsGrammar = (props) => {
-  const { setAlignment, setMorphologyType, setWordOrder } = props;
+  const { alignment, setAlignment, morphologyType, setMorphologyType, wordOrder, setWordOrder } = props;
 
+  useEffect(() => {
+    document.querySelector("#word-order").value = wordOrder;
+    document.querySelector("#type-morphology").value = morphologyType;
+    document.querySelector("#alignment").value = alignment;
+  })
   return (
     <div className="parameters-morphology">
       <div className="wrapper-morpho">
@@ -11,7 +17,6 @@ const ParamsGrammar = (props) => {
           <option value={"agglutinative"}>Agglutinative</option>
           <option value={"fusional"}>Fusional</option>
           <option value={"isolating"}>Isolating</option>
-          <option value={"polysynthetic"}>Polysynthetic</option>
         </select>
       </div>
       <div className="wrapper-morpho">
@@ -28,17 +33,13 @@ const ParamsGrammar = (props) => {
 
       <div className="wrapper-morpho">
         <label htmlFor="alignment">Morphosyntactic alignment:</label>
-        <select id="alignment"  className="select-dropdown" onChange={(e) => setAlignment(e.target.value)}>
+        <select id="alignment" className="select-dropdown" onChange={(e) => setAlignment(e.target.value)}>
           <option value={"nom-acc"}>Nominative-accusative</option>
           <option value={"erg-abs"}>Ergative-absolutive</option>
           <option value={"tripartite"}>Tripartite</option>
-          <option value={"direct"}>Direct</option>
-          <option value={"active-stative"}>Active-stative</option>
         </select>
       </div>
-      <div className="grammatical-gender">
-        <p>Grammatical gender: Select number</p>
-      </div>
+
     </div>
   );
 };

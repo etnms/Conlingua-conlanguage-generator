@@ -5,10 +5,10 @@ import VowelChart from "../VowelChart";
 const Sounds = (props) => {
   const { consonants, vowels, generation, languageName } = props;
 
-  const sortingSounds = (list, comp) => { 
+  const sortingSounds = (list, comp) => {
     list.sort((a, b) => comp.indexOf(a) - comp.indexOf(b));
     return list;
-   };
+  };
 
   const phonoList = (list, listComp) => {
     let tmpList = "";
@@ -27,7 +27,6 @@ const Sounds = (props) => {
     return text;
   };
 
-
   const renderSounds = () => {
     return generation ? (
       <div className="wrapper-phono">
@@ -40,15 +39,17 @@ const Sounds = (props) => {
           <h1 className="title-phono">Vowels</h1>
           <span>{phonoList(vowels, consonantList)}</span>
         </div>
-        <span>Breakdown of type of consonants</span>
-        <ConsonantChart consonants={consonants} sortingSounds={sortingSounds} soundsDistribution={soundsDistribution}></ConsonantChart>
+        <h2 className="title-l">Vowel chart</h2>
         <VowelChart vowels={vowels} sortingSounds={sortingSounds} soundsDistribution={soundsDistribution}></VowelChart>
+        <ConsonantChart
+          consonants={consonants}
+          sortingSounds={sortingSounds}
+          soundsDistribution={soundsDistribution}></ConsonantChart>
       </div>
     ) : (
       <div className="center">
         <h1 className="title-m">
-          Generate a language first and then come back to see the different
-          sounds of your language!
+          Generate a language first and then come back to see the different sounds of your language!
         </h1>
       </div>
     );

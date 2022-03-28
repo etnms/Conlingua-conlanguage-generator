@@ -71,7 +71,7 @@ const LetterPicker = (props) => {
   return (
     <div className="input-letters">
       <fieldset>
-        <label htmlFor="vowels-input" className="label-letters">
+        <label htmlFor="consonants-input" className="label-letters">
           Consonants
         </label>
         <input
@@ -83,7 +83,7 @@ const LetterPicker = (props) => {
       <button
         className="btn btn-secondary"
         onClick={() => setShowIPAConsonants(!showIPAConsonants)}>
-        Show IPA for consonants
+        {showIPAConsonants ?"Hide IPA for consonants": "Show IPA for consonants"}
       </button>
       {showIPAConsonants ? (
         <div className="wrapper-ipa">{createBtns("consonant")}</div>
@@ -101,7 +101,7 @@ const LetterPicker = (props) => {
       <button
         className="btn btn-secondary"
         onClick={() => setShowIPAVowels(!showIPAVowels)}>
-        Show IPA for vowels
+       {showIPAVowels ?"Hide IPA for vowels": "Show IPA for vowels"}
       </button>
       {showIPAVowels ? (
         <div className="wrapper-ipa">{createBtns("vowel")}</div>

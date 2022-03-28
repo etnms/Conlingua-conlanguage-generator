@@ -1,4 +1,4 @@
-@import "../../_variables.scss";
+@use "../../_variables.scss";
 
 /* Hide default HTML checkbox */
 .switch input {
@@ -15,7 +15,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: $light-gray;
+    background-color: variables.$light-gray;
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
@@ -33,7 +33,7 @@
   }
   
   input:checked + .slider {
-    background-color: $primary-color;
+    background-color: variables.$primary-color;
   }
   
   input:checked + .slider:before {

@@ -1,41 +1,36 @@
-import { useState } from "react";
+import { useContext } from "react";
+import ContextGrammar from "../ContextGrammar";
 
-const PersonalPronouns = (props) => {
-  const { pronouns, generation } = props;
+const PersonalPronouns = () => {
 
-  const [basePronouns, setBasePronouns] = useState([
-    "1SG",
-    "2SG",
-    "3SG",
-    "1PL",
-    "2PL",
-    "3PL",
-  ]);
+  const contextGrammar = useContext(ContextGrammar);
+  const {pronouns} = contextGrammar;
+  const basePronouns = ["1SG", "2SG", "3SG", "1PL", "2PL", "3PL"];
 
-  const listPronouns = () => {
-    return pronouns.map((x) => (
-      <li key={Math.floor(Math.random() * 10000000)}>{x}</li>
-    ));
+  const tablePronouns = () => {
+    let i = -1;
+    return basePronouns.map((x) => {
+      i++;
+      return (
+        <tr key={x}>
+          <td>{x}</td>
+          <td><strong>{pronouns[i]}</strong></td>
+        </tr>
+      );
+    });
   };
 
-  const listPronounsNumbered = () => {
-    return basePronouns.map((x) => (
-      <li key={Math.floor(Math.random() * 10000000)}>{x}</li>
-    ));
-  };
   return (
-    <div className="centered">
-      <p>Pronouns</p>
-      <div className="list-display">
-        <ul className="list-default">
-          {generation ? listPronounsNumbered() : <div></div>}
-        </ul>
-        <ul className="list-default">
-          {generation ? listPronouns() : <div></div>}
-        </ul>
+    <section className="section-grammar">
+      <h2 className="section-title">Pronouns</h2>
+      <div className="wrapper-table">
+
+          <table>
+            <tbody>{tablePronouns()}</tbody>
+          </table>
+    
       </div>
-      
-    </div>
+    </section>
   );
 };
 

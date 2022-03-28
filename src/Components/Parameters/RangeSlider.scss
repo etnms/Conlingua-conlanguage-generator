@@ -1,4 +1,4 @@
-@import "../../variables";
+@use "../../variables";
 /* Range input sliders */
 
 .wrapper-range {
@@ -37,7 +37,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: $primary-color;
+    background: variables.$primary-color;
     cursor: pointer;
   }
   
@@ -45,7 +45,7 @@
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: $primary-color;
+    background: variables.$primary-color;
     cursor: pointer;
   }
   

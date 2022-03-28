@@ -1,0 +1,22 @@
+@use "./variables";
+
+@mixin btn-base {
+    border: 2px solid transparent;
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    margin: 0.5rem;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin input-text {
+    padding: 0.2rem;
+    font-size: 1.4rem;
+    border-radius: 0.3rem;
+    border: 2px solid variables.$secondary-color;
+}
