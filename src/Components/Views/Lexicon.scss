@@ -11,7 +11,7 @@
 }
 
 .lexicon-view {
-  background-color: variables.$second-white;
+  background-color:white;
   height: 100%;
   width: 90vw;
   overflow-y: auto;
@@ -19,8 +19,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 2.5px solid black;
-  border-radius: 0.3rem;
+  //border: 2.5px solid black;
+  border-radius: 8px;
+  box-shadow: 1px 1px 10px 2px #C4C4C4;
 }
 
 .title-lexicon {

@@ -308,22 +308,24 @@ const App = () => {
   const renderGrammar = () => {
     if (nav === 1)
       return (
-        <ContextGrammar.Provider value={{generation: generation, 
-        languageName: languageName,          
-        morphologyType:morphologyType,
-        plural:plural,
-        pronouns:pronouns,
-        words:words,
-        wordOrder: wordOrder,
-        pastMorpheme: pastMorpheme,
-        presentMorpheme: presentMorpheme,
-        futurMorpheme: futurMorpheme,
-        alignmentSubject: alignmentSubject,
-        alignmentObject: alignmentObject,
-        tripartiteMorpheme: tripartiteMorpheme,
-        alignment:alignment}}>
-          <Grammar>
-          </Grammar>
+        <ContextGrammar.Provider
+          value={{
+            generation: generation,
+            languageName: languageName,
+            morphologyType: morphologyType,
+            plural: plural,
+            pronouns: pronouns,
+            words: words,
+            wordOrder: wordOrder,
+            pastMorpheme: pastMorpheme,
+            presentMorpheme: presentMorpheme,
+            futurMorpheme: futurMorpheme,
+            alignmentSubject: alignmentSubject,
+            alignmentObject: alignmentObject,
+            tripartiteMorpheme: tripartiteMorpheme,
+            alignment: alignment,
+          }}>
+          <Grammar></Grammar>
         </ContextGrammar.Provider>
       );
   };

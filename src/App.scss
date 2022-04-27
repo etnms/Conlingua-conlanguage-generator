@@ -1,5 +1,6 @@
 @use "_variables";
 @use "_mixin";
+
 /* General settings */
 
 * {
@@ -94,7 +95,7 @@ html {
 
 .btn-fill:hover {
   cursor: pointer;
-  transition:  background 0.5s;
+  transition: background 0.5s;
 }
 
 .btn-secondary {
@@ -107,11 +108,11 @@ html {
 
 .btn-tertiary {
   background-color: variables.$tertiary-color;
-  color: black;
+  color: white;
   font-size: 1.1rem;
 }
 .btn-tertiary:hover {
-  background-color: darken(variables.$tertiary-color, 9%);
+  background-color: darken(variables.$tertiary-color, 10%);
 }
 
 fieldset {

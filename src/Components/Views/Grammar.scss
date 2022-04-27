@@ -12,10 +12,11 @@ section {
 }
 
 .section-grammar {
-  border: 2px solid black;
-  border-radius: 4px;
+  //border: 2px solid black;
+  border-radius: 8px;
   padding: 1rem;
-  background-color: variables.$second-white;
+  background-color: white;
+  box-shadow: 1px 1px 10px 2px #C4C4C4;
 }
 
 .section-title {
