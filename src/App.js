@@ -68,7 +68,8 @@ const App = () => {
           consonantCluster,
           consonants,
           gemination,
-          consOnly
+          consOnly,
+          5
         ),
       ]);
     }
