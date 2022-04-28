@@ -10,15 +10,16 @@ const Params = (props) => {
     setConsOnly,
     gemination,
     setGemination,
-    minLetters,
-    setMinLetters,
-    maxLetters,
-    setMaxLetters,
+    minSyllables,
+    setMinSyllables,
+    maxSyllables,
+    setMaxSyllables,
+    setStressPattern,
   } = props;
 
   useEffect(() => {
-    document.querySelector("#range-min-letters").value = minLetters;
-    document.querySelector("#range-max-letters").value = maxLetters;
+    document.querySelector("#range-min-letters").value = minSyllables;
+    document.querySelector("#range-max-letters").value = maxSyllables;
     document.querySelector("#range-cc").value = consonantCluster;
     document.querySelector("#gemination-checkbox").checked = gemination;
     document.querySelector("#consonly-checkbox").checked = consOnly;
@@ -27,7 +28,7 @@ const Params = (props) => {
   return (
     <div className="parameters-phonology">
       <div className="wrapper-range">
-        <label>Minimum number of sounds per word: </label>
+        <label>Minimum number of syllables per word: </label>
         <input
           type="range"
           min="1"
@@ -35,20 +36,20 @@ const Params = (props) => {
           defaultValue="2"
           className="range-slider"
           id="range-min-letters"
-          onChange={(e) => setMinLetters(parseInt(e.target.value))}></input>
-        <span>{minLetters}</span>
+          onChange={(e) => setMinSyllables(parseInt(e.target.value))}></input>
+        <span>{minSyllables}</span>
       </div>
       <div className="wrapper-range">
-        <label>Maximum number of sounds per word: </label>
+        <label>Maximum number of syllables per word: </label>
         <input
           type="range"
           min="2"
-          max="15"
-          defaultValue="10"
+          max="10"
+          defaultValue="4"
           className="range-slider"
           id="range-max-letters"
-          onChange={(e) => setMaxLetters(parseInt(e.target.value))}></input>
-        <span>{maxLetters}</span>
+          onChange={(e) => setMaxSyllables(parseInt(e.target.value))}></input>
+        <span>{maxSyllables}</span>
       </div>
       <div className="wrapper-range">
         <label>Maximum number of consonants per consonant clusters: </label>
@@ -59,10 +60,17 @@ const Params = (props) => {
           defaultValue="1"
           className="range-slider"
           id="range-cc"
-          onChange={(e) =>
-            setConsonantCluster(parseInt(e.target.value))
-          }></input>
+          onChange={(e) => setConsonantCluster(parseInt(e.target.value))}></input>
         <span>{consonantCluster}</span>
+      </div>
+      <div className="wrapper-range">
+        <label>Stress position in the word: </label>
+        <select onChange={(e) => setStressPattern(e.target.value)} className="select-dropdown">
+          <option value={"first-syl"}>First syllable</option>
+          <option value={"second-syl"}>Second syllable</option>
+          <option value={"penul-syl"}>Penultimate</option>
+          <option value={"last-syl"}>Last syllable</option>
+        </select>
       </div>
       <div className="wrapper-param">
         <span>Gemination: </span>

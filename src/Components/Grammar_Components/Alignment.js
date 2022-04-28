@@ -11,7 +11,7 @@ const Alignment = () => {
   const presentMorpheme = contextGrammar.presentMorpheme;
   const pronouns = contextGrammar.pronouns;
   const alignmentSubject = contextGrammar.alignmentSubject;
-  const alignmentObject = contextGrammar.contextGrammar;
+  const alignmentObject = contextGrammar.alignmentObject;
   const wordOrder = contextGrammar.wordOrder
 
   const createAlignment = (word, presentMorpheme, alignmentSubject, alignmentObject, semanticRole) => {
@@ -22,6 +22,7 @@ const Alignment = () => {
 
     // Switch statement to check the alignment and creating the corresponding values
     switch (alignment) {
+     
       case "nom-acc":
         if (semanticRole === "A" || semanticRole === "S")
           wordAlign = word + presentMorpheme + alignmentSubject;

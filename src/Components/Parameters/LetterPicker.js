@@ -15,7 +15,9 @@ const LetterPicker = (props) => {
     for (let i = 0; i < consonantList.length; i++) {
       document.querySelector("#consonants-input").value += consonantList[i];
     }
-  }, []);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); 
+  // Putting the lists in the dependency array makes input repeat itself
 
   const handleChange = (e, setListSound) => {
     let regex = /^[0-9!@#$%"'<>,[\]^&*)(+=._-]+$/g;

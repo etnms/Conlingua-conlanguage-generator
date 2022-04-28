@@ -6,13 +6,35 @@ import "./Lexicon.scss";
 const Lexicon = (props) => {
   const { generation, languageName, words } = props;
 
+  const [arrayWords, setArrayWords] = useState(words);
   const [listToDisplay, setListToDisplay] = useState("Bilingual list");
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const [bilingualList, setBilingualList] = useState([]);
 
+  const [showStress, setShowStress] = useState(true);
   const listWords = () => {
-    return words.map((x) => <li key={Math.floor(Math.random() * 10000000)}>{x}</li>);
+    return arrayWords.map((x) => <li key={Math.floor(Math.random() * 10000000)}>{x}</li>);
+  };
+
+  const removeStress = () => {
+    if (showStress) {
+      let newList = [];
+      words.forEach((element) => {
+        if (element.includes("\u02C8")) {
+          const newElement = element.replace("\u02C8", "");
+          console.log(newElement);
+          newList.push(newElement);
+        }
+      });
+      setArrayWords(newList);
+      setShowStress(false);
+      return;
+    } else {
+      setArrayWords(words);
+      setShowStress(true);
+      return;
+    }
   };
 
   const listEnglishWords = () => {
@@ -44,7 +66,7 @@ const Lexicon = (props) => {
   };
 
   useEffect(() => {
-    createListBilingual(data, words);
+    createListBilingual(data, arrayWords);
 
     // Display search results if users use the list
     const searchList = (selectedList) => {
@@ -54,8 +76,10 @@ const Lexicon = (props) => {
 
     if (listToDisplay === "Bilingual list") searchList(bilingualList);
     if (listToDisplay === "English only") searchList(data);
-    if (listToDisplay === `${languageName} only`) searchList(words);
-  }, [searchInput, words, languageName, listToDisplay]); 
+    if (listToDisplay === `${languageName} only`) searchList(arrayWords);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchInput, arrayWords, languageName, listToDisplay]);
   // Bilinguallist is not included in the dependency array because of the hook (repetitions)
 
   const filterResultList = () => {
@@ -75,6 +99,9 @@ const Lexicon = (props) => {
           </button>
           <button onClick={() => setListToDisplay(`${languageName} only`)} className="btn btn-tertiary">
             {languageName} only
+          </button>
+          <button onClick={() => removeStress()} className="btn btn-tertiary stress-btn">
+            {showStress ? "Remove stress" : "Show stress"}
           </button>
           <input
             placeholder="Search for words"

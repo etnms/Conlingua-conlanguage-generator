@@ -20,8 +20,9 @@ const App = () => {
   const [vowels, setVowels] = useState([]);
   const [generation, setGeneration] = useState(false);
 
-  const [minLetters, setMinLetters] = useState(2);
-  const [maxLetters, setMaxLetters] = useState(10);
+  const [minSyllables, setMinSyllables] = useState(2);
+  const [maxSyllables, setMaxSyllables] = useState(4);
+  const [stressPattern, setStressPattern] = useState("first-syl");
 
   const [consonantCluster, setConsonantCluster] = useState(1);
   const [gemination, setGemination] = useState(false);
@@ -32,6 +33,7 @@ const App = () => {
   const [wordOrder, setWordOrder] = useState("SOV"); // Default to SOV because most common one
 
   const [plural, setPlural] = useState("");
+  const [negation, setNegation] = useState("");
 
   const [pronouns, setPronouns] = useState([]);
 
@@ -60,30 +62,31 @@ const App = () => {
       setWords((words) => [
         ...words,
         createWord(
-          maxLetters,
-          minLetters,
-          setMaxLetters,
+          maxSyllables,
+          minSyllables,
+          setMaxSyllables,
           lengthCluster,
           vowels,
           consonantCluster,
           consonants,
           gemination,
           consOnly,
-          5
+          stressPattern
         ),
       ]);
     }
     //Generate name for language and capitalize the first letter
     let tmpName = createWord(
-      maxLetters,
-      minLetters,
-      setMaxLetters,
+      maxSyllables,
+      minSyllables,
+      setMaxSyllables,
       lengthCluster,
       vowels,
       consonantCluster,
       consonants,
       gemination,
-      consOnly
+      consOnly,
+      "" // no stress pattern
     );
     setLanguageName(capitalizeFirstLetter(tmpName));
 
@@ -91,6 +94,7 @@ const App = () => {
     generatePronouns();
     generateTenseMorphemes();
     generatePlural();
+    generateNegation();
 
     if (morphologyType !== "isolating") generateAlignmentMorphemes();
     setGeneration(true);
@@ -105,59 +109,80 @@ const App = () => {
       ? setPlural("")
       : setPlural(
           createWord(
-            Math.round(maxLetters / 2), //divide by 2 to get smaller morphemes
-            minLetters,
-            setMaxLetters,
+            1, // Hardcoding 1 syllable
+            1,
+            setMaxSyllables,
             lengthCluster,
             vowels,
             consonantCluster,
             consonants,
             gemination,
-            consOnly
+            consOnly, 
+            "" // no stress pattern
           )
         );
+  };
+
+  const generateNegation = () => {
+    setNegation(
+      createWord(
+        1, // Hardcoding 1 to 2 syllables
+        2,
+        setMaxSyllables,
+        lengthCluster,
+        vowels,
+        consonantCluster,
+        consonants,
+        gemination,
+        consOnly,
+        "" // no stress pattern
+      )
+    );
   };
 
   const generateTenseMorphemes = () => {
     setPastMorpheme(
       createWord(
-        3, // Max letters hard coded to 3 to keep morpheme from being too long
-        minLetters,
-        setMaxLetters,
+        1, // Max letters hard coded to 3 to keep morpheme from being too long
+        1,
+        setMaxSyllables,
         lengthCluster,
         vowels,
         consonantCluster,
         consonants,
         gemination,
-        consOnly
+        consOnly,
+        "" // no stress pattern
       )
     );
     setFutureMorpheme(
       createWord(
-        3, // Max letters hard coded to 3 to keep morpheme from being too long
-        minLetters,
-        setMaxLetters,
+        1, // Max letters hard coded to 3 to keep morpheme from being too long
+        1,
+        setMaxSyllables,
         lengthCluster,
         vowels,
         consonantCluster,
         consonants,
         gemination,
-        consOnly
+        consOnly,
+        "" // no stress pattern
       )
     );
     morphologyType === "isolating"
       ? setPresentMorpheme("")
       : setPresentMorpheme(
           createWord(
-            3, // Max letters hard coded to 3 to keep morpheme from being too long
-            minLetters,
-            setMaxLetters,
+            1, // Max letters hard coded to 3 to keep morpheme from being too long
+            1,
+            setMaxSyllables,
             lengthCluster,
             vowels,
             consonantCluster,
             consonants,
             gemination,
-            consOnly
+            consOnly,
+            "" // no stress pattern
           )
         );
   };
@@ -174,30 +199,32 @@ const App = () => {
     if (randomPlural > 0.35) {
       numPronouns = 3;
       tmpPluralPronoun = createWord(
-        5, // Max letter is hardcoded to avoid long plural forms
-        minLetters,
-        setMaxLetters,
+        2, // Max letter is hardcoded to avoid long plural forms
+        minSyllables,
+        setMaxSyllables,
         lengthCluster,
         vowels,
         consonantCluster,
         consonants,
         gemination,
-        consOnly
+        consOnly,
+        "" // no stress pattern
       );
     }
 
     for (let i = 0; i < numPronouns; i++) {
       tmpPronouns.push(
         createWord(
-          4, // Get the max number for the plural mark, hardcoded as well
-          minLetters,
-          setMaxLetters,
+          1, // Get the max number for the plural mark, hardcoded as well
+          1,
+          setMaxSyllables,
           lengthCluster,
           vowels,
           consonantCluster,
           consonants,
           gemination,
-          consOnly
+          consOnly,
+          "" // no stress pattern
         )
       );
     }
@@ -215,43 +242,46 @@ const App = () => {
 
     setAlignmentSubject(
       createWord(
-        3, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
-        minLetters,
-        setMaxLetters,
+        1, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
+        1,
+        setMaxSyllables,
         lengthCluster,
         vowels,
         consonantCluster,
         consonants,
         gemination,
-        consOnly
+        consOnly,
+        "" // no stress pattern
       )
     );
     setAlignmentObject(
       createWord(
-        3, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
-        minLetters,
-        setMaxLetters,
+        1, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
+        1,
+        setMaxSyllables,
         lengthCluster,
         vowels,
         consonantCluster,
         consonants,
         gemination,
-        consOnly
+        consOnly,
+        "" // no stress pattern
       )
     );
 
     if (alignment === "tripartite")
       setTripartiteMorpheme(
         createWord(
-          3, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
-          minLetters,
-          setMaxLetters,
+          1, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
+          1,
+          setMaxSyllables,
           lengthCluster,
           vowels,
           consonantCluster,
           consonants,
           gemination,
-          consOnly
+          consOnly,
+          "" // no stress pattern
         )
       );
   };
@@ -274,10 +304,12 @@ const App = () => {
             vowelList={vowels}
             setVowels={setVowels}></LetterPicker>
           <Params
-            minLetters={minLetters}
-            maxLetters={maxLetters}
-            setMinLetters={setMinLetters}
-            setMaxLetters={setMaxLetters}
+            minSyllables={minSyllables}
+            maxSyllables={maxSyllables}
+            setMinSyllables={setMinSyllables}
+            setMaxSyllables={setMaxSyllables}
+            stressPattern={stressPattern}
+            setStressPattern={setStressPattern}
             consonantCluster={consonantCluster}
             setConsonantCluster={setConsonantCluster}
             gemination={gemination}
@@ -315,6 +347,7 @@ const App = () => {
             languageName: languageName,
             morphologyType: morphologyType,
             plural: plural,
+            negation: negation,
             pronouns: pronouns,
             words: words,
             wordOrder: wordOrder,
