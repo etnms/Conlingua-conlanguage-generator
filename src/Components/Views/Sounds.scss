@@ -1,4 +1,4 @@
-@use '../../variables';
+@use '../../Scss-styles/variables';
 
 .wrapper-phono {
     display: flex;
@@ -16,7 +16,6 @@
     width: auto;
     min-width: 40vw;
     max-width: 80vw;
-   // border: 2.5px solid black;
 }
 
 .container>span {

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./VowelChart.scss";
-import vowelList from "../Data/vowels.json";
-import img from "../Img/vowel_chart_empty.png";
+import vowelList from "../../Data/vowels.json";
+import img from "../../Img/vowel_chart_empty.png";
 
 const VowelChart = (props) => {
   const { vowels, sortingSounds, soundsDistribution } = props;
@@ -70,7 +70,7 @@ const VowelChart = (props) => {
       <span className="vowel-display open-back">
         {soundsDistribution(sortingSounds(vowels, vowelList), "\u0251", "ɒ")}
       </span>
-      <img src={img} alt="ipa-vowel-chart"></img>
+      <img src={img} alt="ipa-vowel-chart" className="vowel-chart-img"></img>
     </div>
   );
 };

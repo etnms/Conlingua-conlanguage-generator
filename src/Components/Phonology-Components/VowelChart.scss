@@ -1,4 +1,4 @@
-img {
+.vowel-chart-img {
   width: 40vw;
   height: 60vh;
 }
@@ -113,3 +113,10 @@ img {
   top: 85%;
   left: 80%;
 }
+
+@media (max-width: 900px) {
+  .vowel-chart-img {
+    width: 80vw;
+  }
+}
+

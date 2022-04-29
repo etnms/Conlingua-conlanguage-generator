@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import ContextGrammar from "../ContextGrammar";
-import data from "../Data/englishList.json";
+import ContextGrammar from "../../ContextGrammar";
+import data from "../../Data/longList.json";
+import removeStressExamples from "../../Helpers/RemoveStressGrammar";
 
 const WordOrder = () => {
   const contextGrammar = useContext(ContextGrammar);
@@ -16,9 +17,9 @@ const WordOrder = () => {
     };
   }
 
-  const sentence1 = Sentence("He", data[178] + "s", `${data[18]}`);
+  const sentence1 = Sentence("He", data[1134] + "s", `${data[214]}`);
   const sentence1Gloss = Sentence("3SG", "V", "O");
-  const sentence1Translation = Sentence(pronouns[2], `${words[178]}`, `${words[18]}`);
+  const sentence1Translation = Sentence(pronouns[2], `${removeStressExamples(words[1134])}`, `${removeStressExamples(words[214])}`);
 
   const sortingWordOrder = (sentence, wordOrder) => {
     switch (wordOrder) {

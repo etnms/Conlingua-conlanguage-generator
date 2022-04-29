@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ContextGrammar from "../ContextGrammar";
+import ContextGrammar from "../../ContextGrammar";
 
 const PersonalPronouns = () => {
 

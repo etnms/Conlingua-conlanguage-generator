@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import data from "../../Data/englishList.json";
+import data from "../../Data/longList.json";
 import "./Lexicon.scss";
 
 /// Include search bar would be great? ///
@@ -101,7 +101,7 @@ const Lexicon = (props) => {
             {languageName} only
           </button>
           <button onClick={() => removeStress()} className="btn btn-tertiary stress-btn">
-            {showStress ? "Remove stress" : "Show stress"}
+            {showStress ? "Hide stress" : "Show stress"}
           </button>
           <input
             placeholder="Search for words"

@@ -1,10 +1,11 @@
 import "./Grammar.scss";
-import PersonalPronouns from "../PersonalPronouns";
-import WordOrder from "../WordOrder";
-import Alignment from "../Grammar_Components/Alignment";
-import Tenses from "../Grammar_Components/Tenses";
+import PersonalPronouns from "../Grammar-Components/PersonalPronouns";
+import WordOrder from "../Grammar-Components/WordOrder";
+import Alignment from "../Grammar-Components/Alignment";
+import Tenses from "../Grammar-Components/Tenses";
 import { useContext } from "react";
 import ContextGrammar from "../../ContextGrammar";
+import removeStressExamples from "../../Helpers/RemoveStressGrammar";
 
 const Grammar = () => {
   const contextGrammar = useContext(ContextGrammar);
@@ -13,23 +14,18 @@ const Grammar = () => {
   // Hide stress in grammar examples to avoid 1) manipulation with prefix/suffix 
   // that would be overcomplicated for the scope of this app and
   // 2) allows to focus on grammar and not sounds
-  const removeStressExamples = (word) => {
-    if (word.includes("\u02C8")) {
-      const newWord = word.replace("\u02C8", "");
-      return newWord;
-    }
-  };
+  
 
   // Define the basic examples for the grammar section
   const pluralExampleEng = ["One river", "Two rivers", "One person", "Two people"];
   const pluralExample = [
-    `${removeStressExamples(words[29])} ${removeStressExamples(words[22])}`,
-    `${removeStressExamples(words[199])} ${removeStressExamples(words[22] + plural)}`,
-    `${removeStressExamples(words[29])} ${removeStressExamples(words[162])}`,
-    `${removeStressExamples(words[199])} ${removeStressExamples(words[162] + plural)}`,
+    `${removeStressExamples(words[30])} ${removeStressExamples(words[1897])}`,
+    `${removeStressExamples(words[97])} ${removeStressExamples(words[1897] + plural)}`,
+    `${removeStressExamples(words[30])} ${removeStressExamples(words[194])}`,
+    `${removeStressExamples(words[97])} ${removeStressExamples(words[194] + plural)}`,
   ];
 
-  const negationExample = ["No river", `${negation} ${removeStressExamples(words[22])}`];
+  const negationExample = ["No river", `${negation} ${removeStressExamples(words[1897])}`];
 
   const renderGrammar = () => {
     return generation ? (

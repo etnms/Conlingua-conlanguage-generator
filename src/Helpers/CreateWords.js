@@ -5,8 +5,8 @@
 /// need to change number of sounds to number of syllables
 
 const createWord = (
-  maxSyllables,
   minSyllables,
+  maxSyllables,
   setMaxSyllables,
   lengthCluster,
   vowels,
@@ -16,7 +16,7 @@ const createWord = (
   consOnly,
   stressPattern
 ) => {
-  if (maxSyllables < minSyllables) setMaxSyllables(minSyllables);
+  if (maxSyllables < minSyllables) {console.log("oh"); setMaxSyllables(minSyllables)};
   // Prevent errors in word size
 
   // Select random number of syllables based on user input

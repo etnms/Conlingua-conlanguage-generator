@@ -1,3 +1,5 @@
+@use "../../Scss-styles/mixin.scss";
+
 .table-alignment-verb {
   margin: 2rem 0;
   border-collapse: collapse;
@@ -22,9 +24,26 @@
 }
 
 .wrapper-table-verbs {
-  display: flex;
+  @include mixin.flex-center;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   gap: 1rem;
+}
+
+.title-table {
+  margin: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+  .table-alignment-verb {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper-table-verbs {
+    flex-direction: column;
+  }
 }

@@ -1,5 +1,5 @@
-@use "../../mixin";
-@use "../../variables";
+@use "../../Scss-styles/mixin";
+@use "../../Scss-styles/variables";
 
 .lexicon {
   @include mixin.flex-center;
@@ -7,7 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 150vh;
 }
 
 .lexicon-view {
@@ -19,7 +19,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  //border: 2.5px solid black;
   border-radius: 8px;
   box-shadow: 1px 1px 10px 2px #C4C4C4;
 }
@@ -29,9 +28,6 @@
   margin: 1rem 0;
 }
 
-.stress-btn {
-  width: 10rem;
-}
 .wrapper-options-lexicon {
   @include mixin.flex-center;
 }
@@ -79,4 +75,11 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+
+@media (max-width: 800px) {
+  .wrapper-options-lexicon {
+    flex-direction: column;
+  }
 }

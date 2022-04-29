@@ -1,51 +1,61 @@
-@use "../../variables";
+@use "../../Scss-styles/variables";
 /* Range input sliders */
 
 .wrapper-range {
-    display: flex;
-    justify-content: center;
-    min-width: 80vw;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  justify-content: center;
+  min-width: 80vw;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wrapper-range > span {
+  width: 1rem;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.wrapper-range > label {
+  font-size: 1.2rem;
+  width: 30vw;
+}
+
+.range-slider {
+  appearance: none;
+  margin: 0 0.5rem;
+  width: 25%;
+  height: 1rem;
+  border-radius: 1rem;
+  background: #ccc;
+  opacity: 1;
+}
+
+.range-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: variables.$primary-color;
+  cursor: pointer;
+}
+
+.range-slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: variables.$primary-color;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .wrapper-range {
+    flex-direction: column;
   }
-  
-  .wrapper-range > span {
-    width: 1rem;
-    padding: 0 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
   .wrapper-range > label {
-    font-size: 1.2rem;
-    width: 30vw;
+    width: 90vw;
   }
-  
   .range-slider {
-    appearance: none;
-    margin: 0 0.5rem;
-    width: 25%;
-    max-width: 25%;
-    height: 1rem;
-    border-radius: 1rem;
-    background: #ccc;
-    opacity: 1;
+    width: 60%;
   }
-  
-  .range-slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: variables.$primary-color;
-    cursor: pointer;
-  }
-  
-  .range-slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: variables.$primary-color;
-    cursor: pointer;
-  }
-  
+}

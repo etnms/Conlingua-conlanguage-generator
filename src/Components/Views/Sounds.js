@@ -1,7 +1,7 @@
-import ConsonantChart from "../ConsonantChart";
+import ConsonantChart from "../Phonology-Components/ConsonantChart";
 import "./Sounds.scss";
 import consonantList from "../../Data/consonants.json";
-import VowelChart from "../VowelChart";
+import VowelChart from "../Phonology-Components/VowelChart";
 const Sounds = (props) => {
   const { consonants, vowels, generation, languageName } = props;
 

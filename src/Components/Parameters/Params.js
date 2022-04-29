@@ -63,8 +63,8 @@ const Params = (props) => {
           onChange={(e) => setConsonantCluster(parseInt(e.target.value))}></input>
         <span>{consonantCluster}</span>
       </div>
-      <div className="wrapper-range">
-        <label>Stress position in the word: </label>
+      <div className="wrapper-param">
+        <span>Stress position in the word: </span>
         <select onChange={(e) => setStressPattern(e.target.value)} className="select-dropdown">
           <option value={"first-syl"}>First syllable</option>
           <option value={"second-syl"}>Second syllable</option>

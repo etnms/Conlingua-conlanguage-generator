@@ -1,6 +1,6 @@
-@use "_variables";
-@use "_mixin";
-
+@use "./Scss-styles/variables";
+@use "./Scss-styles/mixin";
+@use "./Scss-styles//buttons.scss";
 /* General settings */
 
 * {
@@ -26,10 +26,16 @@ html {
   min-height: 100vh;
 }
 
+.icon-main {
+  height: 150px;
+  width: 150px;
+  margin: auto;
+}
+
 .list-default {
   height: 100%;
   list-style: none;
-  padding:0 1rem;
+  padding: 0 1rem;
 }
 
 .list-numbered {
@@ -40,10 +46,10 @@ html {
 .center {
   @include mixin.flex-center;
   flex-direction: column;
-  height: 80vh;
+  height: 60vh;
 }
 
-.center-no-height{
+.center-no-height {
   @include mixin.flex-center;
   flex-direction: column;
 }
@@ -56,64 +62,6 @@ html {
   font-size: 1.4rem;
 }
 
-.btn {
-  background-color: variables.$primary-color;
-  color: white;
-  border: 2px solid transparent;
-  border-radius: 0.3rem;
-  padding: 0.5rem 1rem;
-  font-size: 1.3rem;
-  margin: 0.5rem;
-}
-
-.btn:hover {
-  border: 2px solid black;
-  opacity: 0.9;
-  transition: 200ms;
-}
-
-.btn-generate {
-  position: relative;
-  z-index: 0;
-} 
-
-.btn-fill::before {
-  position: absolute;
-  content: "";
-  background: darken(variables.$primary-color, 20%);
-  transition-duration: 0.5s;
-  z-index: -1;
-  inset: 0;
-  width: 0;
-  height: 100%;
-} 
-
-.btn-fill:hover::before {
-  width: 100%;
-  height: 100%;
-} 
-
-.btn-fill:hover {
-  cursor: pointer;
-  transition: background 0.5s;
-}
-
-.btn-secondary {
-  border: none;
-  background-color: variables.$secondary-color;
-}
-.btn-secondary:hover {
-  border: none;
-}
-
-.btn-tertiary {
-  background-color: variables.$tertiary-color;
-  color: white;
-  font-size: 1.1rem;
-}
-.btn-tertiary:hover {
-  background-color: darken(variables.$tertiary-color, 10%);
-}
 
 fieldset {
   border: none;
@@ -148,33 +96,22 @@ fieldset {
   padding: 0.3rem;
 }
 
-.btn-letter {
-  font-size: 1.2rem;
-  padding: 0.3rem;
-  margin: 0.2rem;
-  background-color: variables.$light-gray;
-  color: black;
-  border: none;
-  border-radius: 0.2rem;
-}
-
-.btn-letter:hover {
-  background-color: rgb(224, 224, 224);
-}
 
 .input-letters {
   @include mixin.flex-center;
   flex-direction: column;
 }
 
-.list-display {@include 
-  mixin.flex-center;
-  margin: 2rem;
-  height: 60vh;
-  width: 80vw;
-  overflow-y: auto;
+.language-name {
+  font-size: 2rem;
+  margin: 0.5rem
+}
 
-  flex-direction: row;
+.generation-text {
+  font-size: 1.5rem;
+  margin: 1rem;
+  margin-bottom: 2rem;
+  width: 60%;
 }
 
 /* Toggle switch */
@@ -183,6 +120,20 @@ fieldset {
   @include mixin.flex-center;
   gap: 1rem;
 }
+
 .wrapper-param > span {
   font-size: 1.2rem;
+  text-align: center;
+  min-width: 20vw;
+}
+
+
+@media (max-width: 800px) {
+  .btn {
+    width: 25vh;
+  }
+
+  .generation-text {
+    width: 90%;
+  }
 }

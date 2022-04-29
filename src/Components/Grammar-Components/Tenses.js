@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ContextGrammar from "../../ContextGrammar";
+import removeStressExamples from "../../Helpers/RemoveStressGrammar";
 
 const Tenses = () => {
   const contextGrammar = useContext(ContextGrammar);
@@ -81,7 +82,7 @@ const Tenses = () => {
       </h3>
       <div className="wrapper-verb">
         <p>
-          <strong>{words[187]}</strong>: to run
+          <strong>{removeStressExamples(words[597])}</strong>: to run
         </p>
         <p>
           {morphologyType === "isolating"
@@ -98,9 +99,9 @@ const Tenses = () => {
         </p>
       </div>
       <div className="wrapper-table-verbs">
-        {createTenseTable("Present tense", morphologyType, wordOrder, pronouns, words[187], presentMorpheme)}
-        {createTenseTable("Past tense", morphologyType, wordOrder, pronouns, words[187], pastMorpheme)}
-        {createTenseTable("Future tense", morphologyType, wordOrder, pronouns, words[187], futurMorpheme)}
+        {createTenseTable("Present tense", morphologyType, wordOrder, pronouns, removeStressExamples(words[597]), presentMorpheme)}
+        {createTenseTable("Past tense", morphologyType, wordOrder, pronouns, removeStressExamples(words[597]), pastMorpheme)}
+        {createTenseTable("Future tense", morphologyType, wordOrder, pronouns, removeStressExamples(words[597]), futurMorpheme)}
       </div>
     </section>
   );

@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./App.scss";
-import "./Components/Scrollbar.scss";
+import "./Scss-styles/Scrollbar.scss";
 import LetterPicker from "./Components/Parameters/LetterPicker";
 import ParamsGrammar from "./Components/Parameters/ParamsGrammar";
 import Params from "./Components/Parameters/Params";
-import data from "./Data/englishList.json";
 import createWord from "./Helpers/CreateWords";
 import Sounds from "./Components/Views/Sounds";
 import Lexicon from "./Components/Views/Lexicon";
 import Grammar from "./Components/Views/Grammar";
 import ContextGrammar from "./ContextGrammar";
+import Icon from "./Img/icon512.png";
 
 const App = () => {
   const [nav, setNav] = useState(0);
@@ -58,12 +58,12 @@ const App = () => {
     setGeneration(false);
     // Empty state to update it in real time
     setWords([]);
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 2000; i++) {
       setWords((words) => [
         ...words,
-        createWord(
-          maxSyllables,
+        createWord(     
           minSyllables,
+          maxSyllables,
           setMaxSyllables,
           lengthCluster,
           vowels,
@@ -77,8 +77,8 @@ const App = () => {
     }
     //Generate name for language and capitalize the first letter
     let tmpName = createWord(
-      maxSyllables,
       minSyllables,
+      maxSyllables,
       setMaxSyllables,
       lengthCluster,
       vowels,
@@ -199,8 +199,8 @@ const App = () => {
     if (randomPlural > 0.35) {
       numPronouns = 3;
       tmpPluralPronoun = createWord(
-        2, // Max letter is hardcoded to avoid long plural forms
-        minSyllables,
+        1, // Max letter is hardcoded to avoid long plural forms
+        1,
         setMaxSyllables,
         lengthCluster,
         vowels,
@@ -242,7 +242,7 @@ const App = () => {
 
     setAlignmentSubject(
       createWord(
-        1, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
+        1, // Hardcoding 1 syllable max as more would be really uncommon // Could be updated
         1,
         setMaxSyllables,
         lengthCluster,
@@ -256,7 +256,7 @@ const App = () => {
     );
     setAlignmentObject(
       createWord(
-        1, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
+        1, // Hardcoding 1 syllable max as more would be really uncommon // Could be updated
         1,
         setMaxSyllables,
         lengthCluster,
@@ -272,7 +272,7 @@ const App = () => {
     if (alignment === "tripartite")
       setTripartiteMorpheme(
         createWord(
-          1, // Hardcoding 3 sounds max as more would be really uncommon // Could be updated
+          1, // Hardcoding 1 syllable max as more would be really uncommon // Could be updated
           1,
           setMaxSyllables,
           lengthCluster,
@@ -284,14 +284,6 @@ const App = () => {
           "" // no stress pattern
         )
       );
-  };
-
-  const listWords = () => {
-    return words.map((x) => <li key={Math.floor(Math.random() * 10000000)}>{x}</li>);
-  };
-
-  const listEnglishWords = () => {
-    return data.map((x) => <li key={x}>{x}</li>);
   };
 
   const renderParameters = () => {
@@ -326,13 +318,11 @@ const App = () => {
           <button onClick={() => generateLanguage()} className="btn btn-generate btn-fill">
             Generate language
           </button>
-          {generation ? <h2>Language name: {languageName}</h2> : <span></span>}
-          {generation ? (
-            <div className="list-display">
-              <ol className="list-numbered">{listEnglishWords()}</ol>
-              <ul className="list-default">{listWords()}</ul>
-            </div>
-          ) : null}
+          {generation ? <h2 className="language-name">Language name: {languageName}</h2> : null}
+          {generation? 
+          <p className="generation-text">
+            Your language has been generated! You can now look in the different tabs to see the details (grammar, phonology, lexicon).
+            </p> : null}
         </main>
       );
     return null;
@@ -382,6 +372,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <img src={Icon} className="icon-main" alt="icon"></img>
       <nav>
         <button className="btn" onClick={() => setNav(0)}>
           Parameters

@@ -1,12 +1,12 @@
 import "./ConsonantChart.scss";
-import consonantList from "../Data/consonants.json";
+import consonantList from "../../Data/consonants.json";
 
 const ConsonantChart = (props) => {
   const { consonants, sortingSounds, soundsDistribution } = props;
 
   return (
-    <div>
-      <table className="tb">
+    <div className="wrapper-tb-cons">
+      <table className="tb tb-cons-main">
         <caption className="table-title">Pulmonic consonants</caption>
         <thead>
           <tr>
