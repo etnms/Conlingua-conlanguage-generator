@@ -1,10 +1,19 @@
 # Conlingua - Constructed language generator
 
+## Sections
+- [Description and use](#description-and-use)
+- [Features](#features)
+- [About](#about)
+- [Limits and future updates](#limits-and-future-updates)
+- [Linguistic details](#linguistic-details)
+
+### Live demo :point_right: https://etnms.github.io/Conlingua-conlanguage-generator/
+
 ## Description and use
 Conlingua is a web app that allows you to create your own constructed (con) languages. The app provides you with a set of different features that you can fiddle with to create your languages. You can generate as many languages as you wish!<br/>
 First, choose your parameters and then generate your language. Once you generated a language you can then view its details in the different tabs of the app (Grammar, Sounds, Lexicon). Each language is randomly generated based on the parameters you chose.<br/>
 :gem: Conlingua is not limited to simply creating random words but will also provided you with more details such as basic morphology, more in deptch morphology such as alignment,conjugations, IPA charts, lexicon lists and search options :mag:.<br/>
-:raised_hand_with_fingers_splayed: You can use this app for any reason you want: fantasy languages for games, personal interest for con languages, interest in linguistics etc. :heavy_check_mark:
+:raised_hand_with_fingers_splayed: You can use this app for any reason you want: fantasy languages for games, personal interest for con languages, interest in linguistics etc.
 
 
 ## Features 
@@ -32,8 +41,6 @@ The following were used in the making of the app:
 
 ## Limits and future updates
 - <span style="color:red">:x: At the moment you won't be able to save your data. This feature will come in a future update.<span>
-
-
 
 ## Linguistic details
 The following list provides basic details and explanations of some of the features. 
