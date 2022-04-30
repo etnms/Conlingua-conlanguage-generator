@@ -7,8 +7,8 @@ import { useEffect } from "react";
 const DarkThemeToggle = ({ setTheme }) => {
   useEffect(() => {
     if (localStorage.getItem("darkmode") === "darkmode")
-      document.querySelector("input[name='toggle-darkmode']").checked = true;
-    else document.querySelector("input[name='toggle-darkmode']").checked = false;
+      document.querySelector("input[name='toggle-theme']").checked = true;
+    else document.querySelector("input[name='toggle-theme']").checked = false;
   });
 
   const toggleTheme = (e) => {
@@ -26,8 +26,8 @@ const DarkThemeToggle = ({ setTheme }) => {
   return (
     <div className="toggle-dark-theme">
       <WbSunnyIcon />
-      <label className="switch">
-        <input type="checkbox" name="toggle-darkmode" onChange={(e) => toggleTheme(e)} />
+      <label htmlFor="toggle-theme" className="switch">
+        <input type="checkbox" name="toggle-theme" id="toggle-theme" onChange={(e) => toggleTheme(e)} />
         <span className="slider round"></span>
       </label>
       <NightlightIcon />

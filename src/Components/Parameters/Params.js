@@ -18,8 +18,8 @@ const Params = (props) => {
   } = props;
 
   useEffect(() => {
-    document.querySelector("#range-min-letters").value = minSyllables;
-    document.querySelector("#range-max-letters").value = maxSyllables;
+    document.querySelector("#range-min-syllables").value = minSyllables;
+    document.querySelector("#range-max-syllables").value = maxSyllables;
     document.querySelector("#range-cc").value = consonantCluster;
     document.querySelector("#gemination-checkbox").checked = gemination;
     document.querySelector("#consonly-checkbox").checked = consOnly;
@@ -28,31 +28,31 @@ const Params = (props) => {
   return (
     <div className="parameters-phonology">
       <div className="wrapper-range">
-        <label>Minimum number of syllables per word: </label>
+        <label htmlFor="range-min-syllables">Minimum number of syllables per word: </label>
         <input
           type="range"
           min="1"
           max="5"
           defaultValue="2"
           className="range-slider"
-          id="range-min-letters"
+          id="range-min-syllables"
           onChange={(e) => setMinSyllables(parseInt(e.target.value))}></input>
         <span>{minSyllables}</span>
       </div>
       <div className="wrapper-range">
-        <label>Maximum number of syllables per word: </label>
+        <label htmlFor="range-max-syllables">Maximum number of syllables per word: </label>
         <input
           type="range"
           min="2"
           max="10"
           defaultValue="4"
           className="range-slider"
-          id="range-max-letters"
+          id="range-max-syllables"
           onChange={(e) => setMaxSyllables(parseInt(e.target.value))}></input>
         <span>{maxSyllables}</span>
       </div>
       <div className="wrapper-range">
-        <label>Maximum number of consonants per consonant clusters: </label>
+        <label htmlFor="range-cc">Maximum number of consonants per consonant clusters: </label>
         <input
           type="range"
           min="1"
@@ -74,7 +74,7 @@ const Params = (props) => {
       </div>
       <div className="wrapper-param">
         <span>Gemination: </span>
-        <label className="switch">
+        <label htmlFor="gemination-checkbox" className="switch" aria-label="checkbox gemination">
           <input
             type="checkbox"
             id="gemination-checkbox"
@@ -84,7 +84,7 @@ const Params = (props) => {
       </div>
       <div className="wrapper-param">
         <span>Consonant only words: </span>
-        <label className="switch">
+        <label htmlFor="consonly-checkbox" className="switch" aria-label="checkbox consonant only">
           <input
             type="checkbox"
             id="consonly-checkbox"

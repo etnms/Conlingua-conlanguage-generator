@@ -17,6 +17,8 @@ First, choose your parameters and then generate your language. Once you generate
 
 
 ## Features 
+### Responsive design 
+The app can be viewed on a smartphone, although using it on a computer might prove to be easier.
 ### Parameters
 :pencil2: Conlingua provides you with different parameters, but you don't have to use all of them! Each parameter has a default value so you can skip whichever you want.
 #### Inputs and IPA
