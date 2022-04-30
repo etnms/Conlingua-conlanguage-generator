@@ -1,10 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap");
 
-$font:  -apple-system, BlinkMacSystemFont, "Maven Pro", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+$font: -apple-system, BlinkMacSystemFont, "Maven Pro", "Roboto", "Oxygen", "Ubuntu", sans-serif;
 
-$primary-color: #5d5dcf;
-$secondary-color: #383847;
-$tertiary-color: #6A6A94;
-$white: #f2f2f2;
-$second-white: #F7F7F7;
-$light-gray: #cccccc;
+$themes: (
+  "light-theme": (
+    primary-color: #5d5dcf,
+    secondary-color: #383847,
+    tertiary-color: #6a6a94,
+    primary-bg: #f2f2f2,
+    secondary-bg: #f7f7f7,
+    tertiary-bg: #cccccc,
+    primary-hover: darken(#5d5dcf, 20%),
+    secondary-hover: darken(#383847, 20%),
+    tertiary-hover: darken(#6a6a94, 20%),
+    gray-hover: darken(#cccccc, 5%),
+  ),
+  "dark-theme": (
+    primary-color: #5d5dcf,
+    secondary-color: #5B5B73,
+    tertiary-color: #6a6a94,
+    primary-bg: #121212,
+    secondary-bg: #f7f7f7,
+    tertiary-bg: #4e4e4e,
+    primary-hover: darken(#5d5dcf, 20%),
+    secondary-hover: darken(#5B5B73, 20%),
+    tertiary-hover: darken(#cccccc, 20%),
+    gray-hover: darken(#cccccc, 5%),
+  ),
+);

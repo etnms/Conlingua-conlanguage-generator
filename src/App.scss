@@ -1,6 +1,7 @@
 @use "./Scss-styles/variables";
 @use "./Scss-styles/mixin";
 @use "./Scss-styles//buttons.scss";
+
 /* General settings */
 
 * {
@@ -17,12 +18,51 @@ html {
   overflow-y: scroll;
 }
 
+html[data-color-scheme="light"] {
+  color-scheme: light;
+  --primary: #{map-get(variables.$themes, light-theme, primary-color)};
+  --secondary: #{map-get(variables.$themes, light-theme, secondary-color)};
+  --tertiary: #{map-get(variables.$themes, light-theme, tertiary-color)};
+  --bg-primary: #{map-get(variables.$themes, light-theme, primary-bg)};
+  --bg-secondary: #{map-get(variables.$themes, light-theme, secondary-bg)};
+  --bg-tertiary: #{map-get(variables.$themes, light-theme, tertiary-bg)};
+  --primary-hover: #{map-get(variables.$themes, light-theme, primary-hover)};
+  --secondary-hover: #{map-get(variables.$themes, light-theme, secondary-hover)};
+  --tertiary-hover: #{map-get(variables.$themes, light-theme, tertiary-hover)};
+  --gray-hover:  #{map-get(variables.$themes, light-theme, gray-hover)};
+  --card-color: white;
+  --shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+  0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+  0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  --border: black;
+}
+
+html[data-color-scheme="dark"] {
+  color-scheme: dark;
+  --primary: #{map-get(variables.$themes, dark-theme, primary-color)};
+  --secondary: #{map-get(variables.$themes, dark-theme, secondary-color)};
+  --tertiary: #{map-get(variables.$themes, dark-theme, tertiary-color)};
+  --bg-primary: #{map-get(variables.$themes, dark-theme, primary-bg)};
+  --bg-secondary: #{map-get(variables.$themes, dark-theme, secondary-bg)};
+  --bg-tertiary: #{map-get(variables.$themes, dark-theme, tertiary-bg)};
+  --primary-hover: #{map-get(variables.$themes, dark-theme, primary-hover)};
+  --secondary-hover: #{map-get(variables.$themes, dark-theme, secondary-hover)};
+  --tertiary-hover: #{map-get(variables.$themes, dark-theme, tertiary-hover)};
+  --gray-hover:  #{map-get(variables.$themes, dark-theme, gray-hover)};
+  --card-color: #1f1f1f;
+  --shadow: 0px 3px 5px -1px rgba(141, 141, 141, 0.2),
+  0px 5px 8px 0px rgba(141, 141, 141, 0.14),
+  0px 1px 10px 0px rgba(141, 141, 141, 0.12);
+  --border: white;
+}
+
+
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background-color: variables.$white;
+  background-color: var(--bg-primary);
   min-height: 100vh;
 }
 
@@ -91,7 +131,7 @@ fieldset {
 }
 
 .wrapper-ipa {
-  background-color: variables.$white;
+  background-color: var(--bg-primary);
   border-radius: 0.3rem;
   padding: 0.3rem;
 }

@@ -15,7 +15,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: variables.$light-gray;
+    background-color: var(--bg-tertiary);
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
@@ -33,7 +33,7 @@
   }
   
   input:checked + .slider {
-    background-color: variables.$primary-color;
+    background-color: var(--primary);
   }
   
   input:checked + .slider:before {

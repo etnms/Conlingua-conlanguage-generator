@@ -8,15 +8,16 @@ section {
 .grammar {
   @include mixin.flex-center;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .section-grammar {
   //border: 2px solid black;
   border-radius: 8px;
   padding: 1rem;
-  background-color: white;
-  box-shadow: 1px 1px 10px 2px #C4C4C4;
+  background-color: var(--card-color);
+  box-shadow: var(--shadow);
+  //margin: 0.2rem;
 }
 
 .section-title {

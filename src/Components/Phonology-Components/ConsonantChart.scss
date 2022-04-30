@@ -31,7 +31,7 @@
   border-spacing: 0;
   border: 1.5px solid black;
   border-radius: 0.3rem;
-  background-color: white;
+  background-color: var(--card-color);
 }
 
 .tb th {
@@ -58,7 +58,7 @@
 }
 
 .cell-filled {
-background-color: variables.$light-gray;
+background-color: gray;
 }
 
 .cell-large {

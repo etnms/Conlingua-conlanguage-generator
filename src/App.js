@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import "./Scss-styles/Scrollbar.scss";
 import LetterPicker from "./Components/Parameters/LetterPicker";
@@ -10,6 +10,9 @@ import Lexicon from "./Components/Views/Lexicon";
 import Grammar from "./Components/Views/Grammar";
 import ContextGrammar from "./ContextGrammar";
 import Icon from "./Img/icon512.png";
+import IconWhite from "./Img/icon-white.png";
+import DarkThemeToggle from "./Components/DarkThemeToggle";
+import ContextSounds from "./ContextSounds";
 
 const App = () => {
   const [nav, setNav] = useState(0);
@@ -45,6 +48,18 @@ const App = () => {
   const [presentMorpheme, setPresentMorpheme] = useState("");
   const [futurMorpheme, setFutureMorpheme] = useState("");
 
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (localStorage.getItem("darkmode") === "darkmode") {
+      document.documentElement.setAttribute("data-color-scheme", "dark");
+      setTheme("dark");
+    } else {
+      document.documentElement.setAttribute("data-color-scheme", "light");
+      setTheme("light");
+    }
+  }, [theme]);
+
   //Randomize the chance of having a consonant cluster
   const lengthCluster = () => {
     let rdm = Math.random();
@@ -61,7 +76,7 @@ const App = () => {
     for (let i = 0; i < 2000; i++) {
       setWords((words) => [
         ...words,
-        createWord(     
+        createWord(
           minSyllables,
           maxSyllables,
           setMaxSyllables,
@@ -117,7 +132,7 @@ const App = () => {
             consonantCluster,
             consonants,
             gemination,
-            consOnly, 
+            consOnly,
             "" // no stress pattern
           )
         );
@@ -319,10 +334,12 @@ const App = () => {
             Generate language
           </button>
           {generation ? <h2 className="language-name">Language name: {languageName}</h2> : null}
-          {generation? 
-          <p className="generation-text">
-            Your language has been generated! You can now look in the different tabs to see the details (grammar, phonology, lexicon).
-            </p> : null}
+          {generation ? (
+            <p className="generation-text">
+              Your language has been generated! You can now look in the different tabs to see the details
+              (grammar, phonology, lexicon).
+            </p>
+          ) : null}
         </main>
       );
     return null;
@@ -357,11 +374,16 @@ const App = () => {
   const renderSounds = () => {
     if (nav === 2)
       return (
-        <Sounds
-          consonants={consonants}
-          vowels={vowels}
-          generation={generation}
-          languageName={languageName}></Sounds>
+        <ContextSounds.Provider
+          value={{
+            consonants: consonants,
+            vowels: vowels,
+            generation: generation,
+            languageName: languageName,
+            theme: theme,
+          }}>
+          <Sounds></Sounds>
+        </ContextSounds.Provider>
       );
   };
 
@@ -372,7 +394,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <img src={Icon} className="icon-main" alt="icon"></img>
+      <img src={theme === "dark" ? IconWhite : Icon} className="icon-main" alt="icon"></img>
       <nav>
         <button className="btn" onClick={() => setNav(0)}>
           Parameters
@@ -387,6 +409,7 @@ const App = () => {
           Lexicon
         </button>
       </nav>
+      <DarkThemeToggle setTheme={setTheme} />
       {renderParameters()}
       {renderGrammar()}
       {renderSounds()}

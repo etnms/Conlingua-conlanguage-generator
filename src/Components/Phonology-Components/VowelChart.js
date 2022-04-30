@@ -1,12 +1,18 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import "./VowelChart.scss";
 import vowelList from "../../Data/vowels.json";
-import img from "../../Img/vowel_chart_empty.png";
+import chartLight from "../../Img/vowel_chart_empty.png";
+import chartDark from "../../Img/vowel_chart_empty-white.png";
+import ContextSounds from "../../ContextSounds";
 
 const VowelChart = (props) => {
+  const contextSounds = useContext(ContextSounds);
+  const {theme} = contextSounds;
   const { vowels, sortingSounds, soundsDistribution } = props;
 
+
   useEffect(() => {
+    console.log("hey");
     const hideEmptySpot = () => {
       let element = document.querySelectorAll(".vowel-display");
       element.forEach((el) => {
@@ -14,7 +20,8 @@ const VowelChart = (props) => {
       });
     };
     hideEmptySpot();
-  });
+  }, []);
+
 
   return (
     <div className="vowel">
@@ -28,11 +35,7 @@ const VowelChart = (props) => {
         {soundsDistribution(sortingSounds(vowels, vowelList), "\u026f", "u")}
       </span>
       <span className="vowel-display close-front-near">
-        {soundsDistribution(
-          sortingSounds(vowels, vowelList),
-          "\u026a",
-          "\u028f"
-        )}
+        {soundsDistribution(sortingSounds(vowels, vowelList), "\u026a", "\u028f")}
       </span>
       <span className="vowel-display close-back-near">
         {soundsDistribution(sortingSounds(vowels, vowelList), "ʊ")}
@@ -70,7 +73,10 @@ const VowelChart = (props) => {
       <span className="vowel-display open-back">
         {soundsDistribution(sortingSounds(vowels, vowelList), "\u0251", "ɒ")}
       </span>
-      <img src={img} alt="ipa-vowel-chart" className="vowel-chart-img"></img>
+      <img
+        src={theme === "dark" ? chartDark : chartLight}
+        alt="ipa-vowel-chart"
+        className="vowel-chart-img"></img>
     </div>
   );
 };

@@ -2,7 +2,7 @@
 @use "./mixin";
 
 .btn {
-  background-color: variables.$primary-color;
+  background-color: var(--primary);
   color: white;
   border: 2px solid transparent;
   border-radius: 0.3rem;
@@ -12,7 +12,7 @@
 }
 
 .btn:hover {
-  border: 2px solid black;
+  border: 2px solid var(--border);
   opacity: 0.9;
   transition: 200ms;
 }
@@ -25,7 +25,7 @@
 .btn-fill::before {
   position: absolute;
   content: "";
-  background: darken(variables.$primary-color, 20%);
+  background: var(--primary-hover);
   transition-duration: 0.5s;
   z-index: -1;
   inset: 0;
@@ -45,31 +45,32 @@
 
 .btn-secondary {
   border: none;
-  background-color: variables.$secondary-color;
+  background-color:  var(--secondary);
 }
+
 .btn-secondary:hover {
   border: none;
 }
 
 .btn-tertiary {
-  background-color: variables.$tertiary-color;
+  background-color: var(--tertiary);
   color: white;
   font-size: 1.1rem;
 }
 .btn-tertiary:hover {
-  background-color: darken(variables.$tertiary-color, 10%);
+  background: var(--tertiary-hover);
 }
 
 .btn-letter {
   font-size: 1.2rem;
   padding: 0.3rem;
   margin: 0.2rem;
-  background-color: variables.$light-gray;
+  background-color:  var(--bg-tertiary);
   color: black;
   border: none;
   border-radius: 0.2rem;
 }
 
 .btn-letter:hover {
-  background-color: darken(variables.$light-gray, 5%);
+  background-color: var(--gray-hover);
 }

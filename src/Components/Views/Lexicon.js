@@ -109,6 +109,7 @@ const Lexicon = (props) => {
             name="lexicon-search-bar"
             type="text"
             onChange={(e) => searchItems(e.target.value)}
+            
           />
         </div>
         <span className="span-current-list">

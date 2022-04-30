@@ -2,8 +2,12 @@ import ConsonantChart from "../Phonology-Components/ConsonantChart";
 import "./Sounds.scss";
 import consonantList from "../../Data/consonants.json";
 import VowelChart from "../Phonology-Components/VowelChart";
-const Sounds = (props) => {
-  const { consonants, vowels, generation, languageName } = props;
+import ContextSounds from "../../ContextSounds";
+import { useContext } from "react";
+
+const Sounds = () => {
+  const contextSounds = useContext(ContextSounds);
+  const { consonants, vowels, generation, languageName } = contextSounds;
 
   const sortingSounds = (list, comp) => {
     list.sort((a, b) => comp.indexOf(a) - comp.indexOf(b));

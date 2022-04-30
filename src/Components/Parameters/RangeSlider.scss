@@ -27,7 +27,7 @@
   width: 25%;
   height: 1rem;
   border-radius: 1rem;
-  background: #ccc;
+  background: var(--bg-tertiary);
   opacity: 1;
 }
 
@@ -36,7 +36,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: variables.$primary-color;
+  background: var(--primary);
   cursor: pointer;
 }
 
@@ -44,7 +44,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: variables.$primary-color;
+  background: var(--primary);
   cursor: pointer;
 }
 

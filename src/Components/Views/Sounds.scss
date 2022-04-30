@@ -8,8 +8,8 @@
     gap: 1rem;
 }
 .container {
-    background-color: white;
-    box-shadow: 1px 1px 10px 2px #C4C4C4;
+    background-color: var(--card-color);
+    box-shadow: var(--shadow);
     border-radius: 8px;
     padding: 1rem;
     margin-top: 1rem;
