@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Conlingua-conlanguage-generator/static/css/main.7185047e.css",
-    "main.js": "/Conlingua-conlanguage-generator/static/js/main.710e88e3.js",
+    "main.js": "/Conlingua-conlanguage-generator/static/js/main.abf98fb7.js",
     "static/media/icon512.png": "/Conlingua-conlanguage-generator/static/media/icon512.3f1587d70abcf64d5197.png",
     "static/media/icon-white.png": "/Conlingua-conlanguage-generator/static/media/icon-white.dd88ffa7a5f96ee4d3dd.png",
     "static/media/vowel_chart_empty.png": "/Conlingua-conlanguage-generator/static/media/vowel_chart_empty.8f68613561581489f6ec.png",
@@ -9,10 +9,10 @@
     "index.html": "/Conlingua-conlanguage-generator/index.html",
     "static/media/search_icon.svg": "/Conlingua-conlanguage-generator/static/media/search_icon.6c95e853cf5a1eedd6e2.svg",
     "main.7185047e.css.map": "/Conlingua-conlanguage-generator/static/css/main.7185047e.css.map",
-    "main.710e88e3.js.map": "/Conlingua-conlanguage-generator/static/js/main.710e88e3.js.map"
+    "main.abf98fb7.js.map": "/Conlingua-conlanguage-generator/static/js/main.abf98fb7.js.map"
   },
   "entrypoints": [
     "static/css/main.7185047e.css",
-    "static/js/main.710e88e3.js"
+    "static/js/main.abf98fb7.js"
   ]
 }
